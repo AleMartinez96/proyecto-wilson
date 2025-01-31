@@ -101,7 +101,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\GYM\src\icon\guardar.png"/>
+              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\guardar.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -141,7 +141,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="1" name="file:/D:/Ale/Mis%20Cursos/Curso%20Java/Netbeans/GYM/src/icon/transferir.png"/>
+              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\transferir.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -376,7 +376,7 @@
                   <Connection code="new Color(0, 0, 0, 0)" type="code"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\GYM\src\icon\mas.png"/>
+                  <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\mas.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -399,7 +399,7 @@
                   <Connection code="new Color(0, 0, 0, 0)" type="code"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\GYM\src\icon\menos.png"/>
+                  <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\menos.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">

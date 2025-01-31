@@ -60,7 +60,7 @@ public class Principal extends JFrame {
         establecerPanelesCentrales();
         setLabel(lblFondo, "src/image/gimnasio.png");
         setIconImage(new ImageIcon(Objects.requireNonNull(
-                getClass().getResource("/wilson.png"))).getImage());
+                getClass().getResource("/image/wilson.png"))).getImage());
         gestionarPanelSup();
         btnListener();
     }
@@ -261,347 +261,299 @@ public class Principal extends JFrame {
         return verConfiguracion.getListaMembresia();
     }
 
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelPrincipal = new JPanel();
-        panelCentral = new JPanel();
-        panelCapaCentral = new JPanel();
-        panelSup = new JPanel();
-        panelGuion = new JPanel();
-        lblMinimizar = new JLabel();
-        panelX = new JPanel();
-        lblX = new JLabel();
-        panelMenu = new JPanel();
+        panelPrincipal = new javax.swing.JPanel();
+        panelCentral = new javax.swing.JPanel();
+        panelCapaCentral = new javax.swing.JPanel();
+        panelSup = new javax.swing.JPanel();
+        panelGuion = new javax.swing.JPanel();
+        lblMinimizar = new javax.swing.JLabel();
+        panelX = new javax.swing.JPanel();
+        lblX = new javax.swing.JLabel();
+        panelMenu = new javax.swing.JPanel();
         btnInicio = new es.xalpha.gym.vista.BotonRedondeado();
         btnRegistro = new es.xalpha.gym.vista.BotonRedondeado();
         btnClientes = new es.xalpha.gym.vista.BotonRedondeado();
         btnFacturas = new es.xalpha.gym.vista.BotonRedondeado();
         btnConfig = new es.xalpha.gym.vista.BotonRedondeado();
-        panelCapaMenu = new JPanel();
-        lblFondo = new JLabel();
+        panelCapaMenu = new javax.swing.JPanel();
+        lblFondo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Form"); // NOI18N
         setUndecorated(true);
         setResizable(false);
 
-        panelPrincipal.setBackground(new Color(0, 0, 0));
+        panelPrincipal.setBackground(new java.awt.Color(0, 0, 0));
         panelPrincipal.setName("panelPrincipal"); // NOI18N
         panelPrincipal.setOpaque(false);
-        panelPrincipal.setPreferredSize(new Dimension(1000, 550));
-        panelPrincipal.setLayout(
-                new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelPrincipal.setPreferredSize(new java.awt.Dimension(1000, 550));
+        panelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelCentral.setName(""); // NOI18N
         panelCentral.setOpaque(false);
-        panelCentral.setPreferredSize(new Dimension(800, 500));
+        panelCentral.setPreferredSize(new java.awt.Dimension(800, 500));
 
-        GroupLayout panelCentralLayout = new GroupLayout(panelCentral);
+        javax.swing.GroupLayout panelCentralLayout = new javax.swing.GroupLayout(panelCentral);
         panelCentral.setLayout(panelCentralLayout);
         panelCentralLayout.setHorizontalGroup(
-                panelCentralLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGap(0, 800,
-                        Short.MAX_VALUE));
+            panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+        );
         panelCentralLayout.setVerticalGroup(
-                panelCentralLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGap(0, 500,
-                        Short.MAX_VALUE));
+            panelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
 
-        panelPrincipal.add(panelCentral,
-                new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 800,
-                        500));
+        panelPrincipal.add(panelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 800, 500));
 
         panelCapaCentral.setBackground(new Color(0, 0, 0, 175));
         panelCapaCentral.setName("panelCapaCentral"); // NOI18N
-        panelCapaCentral.setPreferredSize(new Dimension(600, 500));
+        panelCapaCentral.setPreferredSize(new java.awt.Dimension(600, 500));
 
-        GroupLayout panelCapaCentralLayout = new GroupLayout(panelCapaCentral);
+        javax.swing.GroupLayout panelCapaCentralLayout = new javax.swing.GroupLayout(panelCapaCentral);
         panelCapaCentral.setLayout(panelCapaCentralLayout);
         panelCapaCentralLayout.setHorizontalGroup(
-                panelCapaCentralLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGap(0, 790,
-                        Short.MAX_VALUE));
+            panelCapaCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 790, Short.MAX_VALUE)
+        );
         panelCapaCentralLayout.setVerticalGroup(
-                panelCapaCentralLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGap(0, 500,
-                        Short.MAX_VALUE));
+            panelCapaCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
 
-        panelPrincipal.add(panelCapaCentral,
-                new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 790,
-                        -1));
+        panelPrincipal.add(panelCapaCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 790, -1));
 
-        panelSup.setBackground(new Color(0, 0, 0));
-        panelSup.setForeground(new Color(0, 0, 0));
+        panelSup.setBackground(new java.awt.Color(0, 0, 0));
+        panelSup.setForeground(new java.awt.Color(0, 0, 0));
         panelSup.setName("panelSup"); // NOI18N
-        panelSup.setPreferredSize(new Dimension(1000, 30));
+        panelSup.setPreferredSize(new java.awt.Dimension(1000, 30));
 
         panelGuion.setBackground(new Color(0, 0, 0, 175));
-        panelGuion.setMaximumSize(new Dimension(18, 18));
-        panelGuion.setMinimumSize(new Dimension(18, 18));
+        panelGuion.setMaximumSize(new java.awt.Dimension(18, 18));
+        panelGuion.setMinimumSize(new java.awt.Dimension(18, 18));
         panelGuion.setName("panelGuion"); // NOI18N
-        panelGuion.setPreferredSize(new Dimension(18, 18));
+        panelGuion.setPreferredSize(new java.awt.Dimension(18, 18));
 
-        lblMinimizar.setBackground(new Color(255, 255, 255));
-        lblMinimizar.setIcon(new ImageIcon("D:\\Ale\\Mis Cursos\\Curso " +
-                                           "Java\\Netbeans\\GYM\\src\\icon" +
-                                           "\\minimizar.png")); // NOI18N
-        lblMinimizar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblMinimizar.setBackground(new java.awt.Color(255, 255, 255));
+        lblMinimizar.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\minimizar.png")); // NOI18N
+        lblMinimizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblMinimizar.setName("lblMinimizar"); // NOI18N
+        lblMinimizar.setPreferredSize(new java.awt.Dimension(18, 18));
 
-        GroupLayout panelGuionLayout = new GroupLayout(panelGuion);
+        javax.swing.GroupLayout panelGuionLayout = new javax.swing.GroupLayout(panelGuion);
         panelGuion.setLayout(panelGuionLayout);
         panelGuionLayout.setHorizontalGroup(
-                panelGuionLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGroup(
-                        GroupLayout.Alignment.TRAILING,
-                        panelGuionLayout.createSequentialGroup().addGap(0, 0,
-                                Short.MAX_VALUE).addComponent(lblMinimizar)));
-        panelGuionLayout.setVerticalGroup(panelGuionLayout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addGroup(
-                GroupLayout.Alignment.TRAILING,
-                panelGuionLayout.createSequentialGroup().addGap(0, 0,
-                        Short.MAX_VALUE).addComponent(lblMinimizar)));
+            panelGuionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGuionLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        panelGuionLayout.setVerticalGroup(
+            panelGuionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGuionLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(lblMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         panelX.setBackground(new Color(0, 0, 0, 175));
-        panelX.setForeground(new Color(255, 255, 255));
-        panelX.setMaximumSize(new Dimension(18, 18));
-        panelX.setMinimumSize(new Dimension(18, 18));
+        panelX.setForeground(new java.awt.Color(255, 255, 255));
+        panelX.setMaximumSize(new java.awt.Dimension(18, 18));
+        panelX.setMinimumSize(new java.awt.Dimension(18, 18));
         panelX.setName("panelX"); // NOI18N
-        panelX.setPreferredSize(new Dimension(18, 18));
+        panelX.setPreferredSize(new java.awt.Dimension(18, 18));
 
-        lblX.setIcon(new ImageIcon(
-                "D:\\Ale\\Mis Cursos\\Curso " + "Java\\Netbeans\\GYM\\src" +
-                "\\icon\\cerrar.png")); // NOI18N
-        lblX.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        lblX.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\cerrar.png")); // NOI18N
+        lblX.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblX.setName("lblX"); // NOI18N
+        lblX.setPreferredSize(new java.awt.Dimension(18, 18));
 
-        GroupLayout panelXLayout = new GroupLayout(panelX);
+        javax.swing.GroupLayout panelXLayout = new javax.swing.GroupLayout(panelX);
         panelX.setLayout(panelXLayout);
-        panelXLayout.setHorizontalGroup(panelXLayout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addGroup(
-                panelXLayout.createSequentialGroup().addComponent(lblX,
-                        GroupLayout.PREFERRED_SIZE, 18,
-                        GroupLayout.PREFERRED_SIZE).addGap(0, 0,
-                        Short.MAX_VALUE)));
-        panelXLayout.setVerticalGroup(panelXLayout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addGroup(
-                panelXLayout.createSequentialGroup().addComponent(lblX).addGap(
-                        0, 0, Short.MAX_VALUE)));
+        panelXLayout.setHorizontalGroup(
+            panelXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelXLayout.createSequentialGroup()
+                .addComponent(lblX, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        panelXLayout.setVerticalGroup(
+            panelXLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelXLayout.createSequentialGroup()
+                .addComponent(lblX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
-        GroupLayout panelSupLayout = new GroupLayout(panelSup);
+        javax.swing.GroupLayout panelSupLayout = new javax.swing.GroupLayout(panelSup);
         panelSup.setLayout(panelSupLayout);
-        panelSupLayout.setHorizontalGroup(panelSupLayout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addGroup(
-                GroupLayout.Alignment.TRAILING,
-                panelSupLayout.createSequentialGroup().addContainerGap(946,
-                        Short.MAX_VALUE).addComponent(panelGuion,
-                        GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE).addPreferredGap(
-                        LayoutStyle.ComponentPlacement.UNRELATED).addComponent(
-                        panelX, GroupLayout.PREFERRED_SIZE,
-                        GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE).addContainerGap()));
-        panelSupLayout.setVerticalGroup(panelSupLayout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addGroup(
-                GroupLayout.Alignment.TRAILING,
-                panelSupLayout.createSequentialGroup().addContainerGap(
-                        GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addGroup(
-                        panelSupLayout.createParallelGroup(
-                                GroupLayout.Alignment.LEADING).addComponent(
-                                panelX, GroupLayout.PREFERRED_SIZE,
-                                GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE).addComponent(
-                                panelGuion, GroupLayout.PREFERRED_SIZE,
-                                GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE)).addGap(125, 125,
-                        125)));
+        panelSupLayout.setHorizontalGroup(
+            panelSupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSupLayout.createSequentialGroup()
+                .addContainerGap(946, Short.MAX_VALUE)
+                .addComponent(panelGuion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        panelSupLayout.setVerticalGroup(
+            panelSupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSupLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelSupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelGuion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(125, 125, 125))
+        );
 
-        panelPrincipal.add(panelSup,
-                new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1,
-                        -1));
+        panelPrincipal.add(panelSup, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        panelMenu.setBackground(new Color(80, 80, 80));
+        panelMenu.setBackground(new java.awt.Color(80, 80, 80));
         panelMenu.setName("panelMenu"); // NOI18N
         panelMenu.setOpaque(false);
-        panelMenu.setPreferredSize(new Dimension(172, 400));
+        panelMenu.setPreferredSize(new java.awt.Dimension(172, 400));
 
         btnInicio.setBackground(new Color(0, 0, 0, 0));
-        btnInicio.setForeground(new Color(255, 255, 255));
-        btnInicio.setIcon(new ImageIcon("D:\\Ale\\Mis Cursos\\Curso " +
-                                        "Java\\Netbeans\\GYM\\src\\icon\\Home" +
-                                        ".png")); // NOI18N
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
-                "es/xalpha/gym/vista/Bundle"); // NOI18N
-        btnInicio.setText(
-                bundle.getString("Principal.btnInicio.text")); // NOI18N
+        btnInicio.setForeground(new java.awt.Color(255, 255, 255));
+        btnInicio.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\Home.png")); // NOI18N
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("es/xalpha/gym/vista/Bundle"); // NOI18N
+        btnInicio.setText(bundle.getString("Principal.btnInicio.text")); // NOI18N
         btnInicio.setColor(new Color(0, 0, 0, 0));
-        btnInicio.setColorClick(new Color(228, 205, 59));
-        btnInicio.setColorOver(new Color(244, 219, 64));
-        btnInicio.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        btnInicio.setHorizontalAlignment(SwingConstants.LEFT);
+        btnInicio.setColorClick(new java.awt.Color(228, 205, 59));
+        btnInicio.setColorOver(new java.awt.Color(244, 219, 64));
+        btnInicio.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnInicio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnInicio.setIconTextGap(10);
-        btnInicio.setMargin(new Insets(2, 14, 2, 14));
-        btnInicio.setMaximumSize(new Dimension(100, 40));
-        btnInicio.setMinimumSize(new Dimension(170, 40));
+        btnInicio.setMargin(new java.awt.Insets(2, 14, 2, 14));
+        btnInicio.setMaximumSize(new java.awt.Dimension(100, 40));
+        btnInicio.setMinimumSize(new java.awt.Dimension(170, 40));
         btnInicio.setName("btnInicio"); // NOI18N
-        btnInicio.setPreferredSize(new Dimension(170, 40));
+        btnInicio.setPreferredSize(new java.awt.Dimension(170, 40));
 
         btnRegistro.setBackground(new Color(0, 0, 0, 0));
-        btnRegistro.setForeground(new Color(255, 255, 255));
-        btnRegistro.setIcon(new ImageIcon("D:\\Ale\\Mis Cursos\\Curso " +
-                                          "Java\\Netbeans\\GYM\\src\\icon" +
-                                          "\\registrar.png")); // NOI18N
-        btnRegistro.setText(
-                bundle.getString("Principal.btnRegistro.text")); // NOI18N
+        btnRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistro.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\registrar.png")); // NOI18N
+        btnRegistro.setText(bundle.getString("Principal.btnRegistro.text")); // NOI18N
         btnRegistro.setColor(new Color(0, 0, 0, 0));
-        btnRegistro.setColorClick(new Color(10, 193, 18));
-        btnRegistro.setColorOver(new Color(15, 225, 24));
-        btnRegistro.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        btnRegistro.setHorizontalAlignment(SwingConstants.LEFT);
+        btnRegistro.setColorClick(new java.awt.Color(10, 193, 18));
+        btnRegistro.setColorOver(new java.awt.Color(15, 225, 24));
+        btnRegistro.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnRegistro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnRegistro.setIconTextGap(10);
-        btnRegistro.setMargin(new Insets(2, 14, 2, 14));
-        btnRegistro.setMaximumSize(new Dimension(100, 40));
-        btnRegistro.setMinimumSize(new Dimension(170, 40));
+        btnRegistro.setMargin(new java.awt.Insets(2, 14, 2, 14));
+        btnRegistro.setMaximumSize(new java.awt.Dimension(100, 40));
+        btnRegistro.setMinimumSize(new java.awt.Dimension(170, 40));
         btnRegistro.setName("btnRegistro"); // NOI18N
-        btnRegistro.setPreferredSize(new Dimension(170, 40));
+        btnRegistro.setPreferredSize(new java.awt.Dimension(170, 40));
 
         btnClientes.setBackground(new Color(0, 0, 0, 0));
-        btnClientes.setForeground(new Color(255, 255, 255));
-        btnClientes.setIcon(new ImageIcon("D:\\Ale\\Mis Cursos\\Curso " +
-                                          "Java\\Netbeans\\GYM\\src\\icon" +
-                                          "\\ver.png")); // NOI18N
-        btnClientes.setText(
-                bundle.getString("Principal.btnClientes.text")); // NOI18N
+        btnClientes.setForeground(new java.awt.Color(255, 255, 255));
+        btnClientes.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\ver.png")); // NOI18N
+        btnClientes.setText(bundle.getString("Principal.btnClientes.text")); // NOI18N
         btnClientes.setColor(new Color(0, 0, 0, 0));
-        btnClientes.setColorClick(new Color(183, 51, 216));
-        btnClientes.setColorOver(new Color(207, 60, 243));
-        btnClientes.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        btnClientes.setHorizontalAlignment(SwingConstants.LEFT);
+        btnClientes.setColorClick(new java.awt.Color(183, 51, 216));
+        btnClientes.setColorOver(new java.awt.Color(207, 60, 243));
+        btnClientes.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnClientes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnClientes.setIconTextGap(10);
-        btnClientes.setMargin(new Insets(2, 14, 2, 14));
-        btnClientes.setMaximumSize(new Dimension(100, 40));
-        btnClientes.setMinimumSize(new Dimension(170, 40));
+        btnClientes.setMargin(new java.awt.Insets(2, 14, 2, 14));
+        btnClientes.setMaximumSize(new java.awt.Dimension(100, 40));
+        btnClientes.setMinimumSize(new java.awt.Dimension(170, 40));
         btnClientes.setName("btnClientes"); // NOI18N
-        btnClientes.setPreferredSize(new Dimension(170, 40));
+        btnClientes.setPreferredSize(new java.awt.Dimension(170, 40));
 
         btnFacturas.setBackground(new Color(0, 0, 0, 0));
-        btnFacturas.setForeground(new Color(255, 255, 255));
-        btnFacturas.setIcon(new ImageIcon("D:\\Ale\\Mis Cursos\\Curso " +
-                                          "Java\\Netbeans\\GYM\\src\\icon" +
-                                          "\\factura.png")); // NOI18N
-        btnFacturas.setText(
-                bundle.getString("Principal.btnFacturas.text")); // NOI18N
+        btnFacturas.setForeground(new java.awt.Color(255, 255, 255));
+        btnFacturas.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\factura.png")); // NOI18N
+        btnFacturas.setText(bundle.getString("Principal.btnFacturas.text")); // NOI18N
         btnFacturas.setColor(new Color(0, 0, 0, 0));
-        btnFacturas.setColorClick(new Color(232, 163, 42));
-        btnFacturas.setColorOver(new Color(249, 175, 45));
-        btnFacturas.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        btnFacturas.setHorizontalAlignment(SwingConstants.LEFT);
+        btnFacturas.setColorClick(new java.awt.Color(232, 163, 42));
+        btnFacturas.setColorOver(new java.awt.Color(249, 175, 45));
+        btnFacturas.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnFacturas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnFacturas.setIconTextGap(10);
-        btnFacturas.setMargin(new Insets(2, 14, 2, 14));
-        btnFacturas.setMaximumSize(new Dimension(100, 40));
-        btnFacturas.setMinimumSize(new Dimension(170, 40));
+        btnFacturas.setMargin(new java.awt.Insets(2, 14, 2, 14));
+        btnFacturas.setMaximumSize(new java.awt.Dimension(100, 40));
+        btnFacturas.setMinimumSize(new java.awt.Dimension(170, 40));
         btnFacturas.setName("btnFacturas"); // NOI18N
-        btnFacturas.setPreferredSize(new Dimension(170, 40));
+        btnFacturas.setPreferredSize(new java.awt.Dimension(170, 40));
 
         btnConfig.setBackground(new Color(0, 0, 0, 0));
-        btnConfig.setForeground(new Color(255, 255, 255));
-        btnConfig.setIcon(new ImageIcon("D:\\Ale\\Mis Cursos\\Curso " +
-                                        "Java\\Netbeans\\GYM\\src\\icon" +
-                                        "\\configuracion.png")); // NOI18N
-        btnConfig.setText(
-                bundle.getString("Principal.btnConfig.text")); // NOI18N
+        btnConfig.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfig.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\configuracion.png")); // NOI18N
+        btnConfig.setText(bundle.getString("Principal.btnConfig.text")); // NOI18N
         btnConfig.setColor(new Color(0, 0, 0, 0));
-        btnConfig.setColorClick(new Color(60, 72, 219));
-        btnConfig.setColorOver(new Color(70, 83, 246));
-        btnConfig.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        btnConfig.setHorizontalAlignment(SwingConstants.LEFT);
+        btnConfig.setColorClick(new java.awt.Color(60, 72, 219));
+        btnConfig.setColorOver(new java.awt.Color(70, 83, 246));
+        btnConfig.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnConfig.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnConfig.setIconTextGap(10);
-        btnConfig.setMargin(new Insets(2, 14, 2, 14));
-        btnConfig.setMaximumSize(new Dimension(100, 40));
-        btnConfig.setMinimumSize(new Dimension(170, 40));
+        btnConfig.setMargin(new java.awt.Insets(2, 14, 2, 14));
+        btnConfig.setMaximumSize(new java.awt.Dimension(100, 40));
+        btnConfig.setMinimumSize(new java.awt.Dimension(170, 40));
         btnConfig.setName("btnConfig"); // NOI18N
-        btnConfig.setPreferredSize(new Dimension(170, 40));
+        btnConfig.setPreferredSize(new java.awt.Dimension(170, 40));
 
-        GroupLayout panelMenuLayout = new GroupLayout(panelMenu);
+        javax.swing.GroupLayout panelMenuLayout = new javax.swing.GroupLayout(panelMenu);
         panelMenu.setLayout(panelMenuLayout);
-        panelMenuLayout.setHorizontalGroup(panelMenuLayout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addGroup(
-                panelMenuLayout.createParallelGroup(
-                        GroupLayout.Alignment.CENTER).addComponent(btnInicio,
-                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE).addComponent(btnRegistro,
-                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE).addComponent(btnClientes,
-                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE).addComponent(btnFacturas,
-                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE).addComponent(btnConfig,
-                        GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE)));
-        panelMenuLayout.setVerticalGroup(panelMenuLayout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addGroup(
-                panelMenuLayout.createSequentialGroup().addGap(134, 134,
-                        134).addComponent(btnInicio, GroupLayout.PREFERRED_SIZE,
-                        GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE).addPreferredGap(
-                        LayoutStyle.ComponentPlacement.RELATED).addComponent(
-                        btnRegistro, GroupLayout.PREFERRED_SIZE,
-                        GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE).addPreferredGap(
-                        LayoutStyle.ComponentPlacement.RELATED).addComponent(
-                        btnClientes, GroupLayout.PREFERRED_SIZE,
-                        GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE).addPreferredGap(
-                        LayoutStyle.ComponentPlacement.RELATED).addComponent(
-                        btnFacturas, GroupLayout.PREFERRED_SIZE,
-                        GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE).addPreferredGap(
-                        LayoutStyle.ComponentPlacement.RELATED).addComponent(
-                        btnConfig, GroupLayout.PREFERRED_SIZE,
-                        GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE).addContainerGap(162,
-                        Short.MAX_VALUE)));
+        panelMenuLayout.setHorizontalGroup(
+            panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                .addComponent(btnInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnFacturas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConfig, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelMenuLayout.setVerticalGroup(
+            panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelMenuLayout.createSequentialGroup()
+                .addGap(134, 134, 134)
+                .addComponent(btnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnFacturas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnConfig, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(162, Short.MAX_VALUE))
+        );
 
-        panelPrincipal.add(panelMenu,
-                new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1,
-                        520));
+        panelPrincipal.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, 520));
 
         panelCapaMenu.setBackground(new Color(0, 0, 0, 175));
         panelCapaMenu.setName("panelCapaMenu"); // NOI18N
-        panelCapaMenu.setPreferredSize(new Dimension(172, 400));
+        panelCapaMenu.setPreferredSize(new java.awt.Dimension(172, 400));
 
-        GroupLayout panelCapaMenuLayout = new GroupLayout(panelCapaMenu);
+        javax.swing.GroupLayout panelCapaMenuLayout = new javax.swing.GroupLayout(panelCapaMenu);
         panelCapaMenu.setLayout(panelCapaMenuLayout);
         panelCapaMenuLayout.setHorizontalGroup(
-                panelCapaMenuLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGap(0, 172,
-                        Short.MAX_VALUE));
+            panelCapaMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 172, Short.MAX_VALUE)
+        );
         panelCapaMenuLayout.setVerticalGroup(
-                panelCapaMenuLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGap(0, 520,
-                        Short.MAX_VALUE));
+            panelCapaMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 520, Short.MAX_VALUE)
+        );
 
-        panelPrincipal.add(panelCapaMenu,
-                new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1,
-                        520));
+        panelPrincipal.add(panelCapaMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, 520));
 
         lblFondo.setName("lblFondo"); // NOI18N
-        lblFondo.setPreferredSize(new Dimension(1000, 550));
-        panelPrincipal.add(lblFondo,
-                new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1,
-                        -1));
+        lblFondo.setPreferredSize(new java.awt.Dimension(1000, 550));
+        panelPrincipal.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        GroupLayout layout = new GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addComponent(panelPrincipal,
-                GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                Short.MAX_VALUE));
-        layout.setVerticalGroup(layout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addComponent(panelPrincipal,
-                GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                Short.MAX_VALUE));
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
         setLocationRelativeTo(null);
@@ -613,16 +565,16 @@ public class Principal extends JFrame {
     private es.xalpha.gym.vista.BotonRedondeado btnFacturas;
     private es.xalpha.gym.vista.BotonRedondeado btnInicio;
     private es.xalpha.gym.vista.BotonRedondeado btnRegistro;
-    private JLabel lblFondo;
-    private JLabel lblMinimizar;
-    private JLabel lblX;
-    private JPanel panelCapaCentral;
-    private JPanel panelCapaMenu;
-    private JPanel panelCentral;
-    private JPanel panelGuion;
-    private JPanel panelMenu;
-    private JPanel panelPrincipal;
-    private JPanel panelSup;
-    private JPanel panelX;
+    private javax.swing.JLabel lblFondo;
+    private javax.swing.JLabel lblMinimizar;
+    private javax.swing.JLabel lblX;
+    private javax.swing.JPanel panelCapaCentral;
+    private javax.swing.JPanel panelCapaMenu;
+    private javax.swing.JPanel panelCentral;
+    private javax.swing.JPanel panelGuion;
+    private javax.swing.JPanel panelMenu;
+    private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JPanel panelSup;
+    private javax.swing.JPanel panelX;
     // End of variables declaration//GEN-END:variables
 }

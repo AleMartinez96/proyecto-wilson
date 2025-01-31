@@ -177,7 +177,7 @@ public class RegistrarCliente extends JPanel {
 
     public static void setCalendario(JDateChooser calendario) {
         calendario.setIcon(new ImageIcon(Objects.requireNonNull(
-                RegistrarCliente.class.getResource("/calendario.png"))));
+                RegistrarCliente.class.getResource("/image/calendario.png"))));
         calendario.getDateEditor().getUiComponent().setEnabled(false);
         calendario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         calendario.getCalendarButton().setBackground(new Color(0, 0, 0, 0));
@@ -214,584 +214,628 @@ public class RegistrarCliente extends JPanel {
         return panelEdicion;
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelEdicion = new JPanel();
-        panelDatosPersonales = new JPanel();
-        lblApellido = new JLabel();
-        txtApellido = new JTextField();
-        lblNombre = new JLabel();
-        txtNombre = new JTextField();
-        lblFecha = new JLabel();
-        lblDatosPersonales = new JLabel();
-        txtBarrio = new JTextField();
-        lblBarrio = new JLabel();
-        lblCalle = new JLabel();
-        txtCalle = new JTextField();
-        lblDomicilio = new JLabel();
+        panelEdicion = new javax.swing.JPanel();
+        panelDatosPersonales = new javax.swing.JPanel();
+        lblApellido = new javax.swing.JLabel();
+        txtApellido = new javax.swing.JTextField();
+        lblNombre = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        lblFecha = new javax.swing.JLabel();
+        lblDatosPersonales = new javax.swing.JLabel();
+        txtBarrio = new javax.swing.JTextField();
+        lblBarrio = new javax.swing.JLabel();
+        lblCalle = new javax.swing.JLabel();
+        txtCalle = new javax.swing.JTextField();
+        lblDomicilio = new javax.swing.JLabel();
         calendarioNac = new com.toedter.calendar.JDateChooser();
-        panelDomicilio = new JPanel();
-        lblDatosPersonales1 = new JLabel();
-        lblMembresia = new JLabel();
-        cbxMembresia = new JComboBox<>();
-        lblMonto = new JLabel();
-        txtMonto = new JTextField();
-        lblMembresia1 = new JLabel();
+        panelDomicilio = new javax.swing.JPanel();
+        lblDatosPersonales1 = new javax.swing.JLabel();
+        lblMembresia = new javax.swing.JLabel();
+        cbxMembresia = new javax.swing.JComboBox<>();
+        lblMonto = new javax.swing.JLabel();
+        txtMonto = new javax.swing.JTextField();
+        lblMembresia1 = new javax.swing.JLabel();
         calendarioInicio = new com.toedter.calendar.JDateChooser();
-        lblMembresia2 = new JLabel();
+        lblMembresia2 = new javax.swing.JLabel();
         calendarioFin = new com.toedter.calendar.JDateChooser();
-        lblContacto = new JLabel();
-        lblEmail = new JLabel();
-        txtEmail = new JTextField();
-        lblTelefono = new JLabel();
-        txtTelefono = new JTextField();
+        lblContacto = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        lblTelefono = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
         btnGuardar = new es.xalpha.gym.vista.BotonRedondeado();
         btnLimpiar = new es.xalpha.gym.vista.BotonRedondeado();
 
-        setPreferredSize(new Dimension(800, 500));
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
         panelEdicion.setOpaque(false);
-        panelEdicion.setPreferredSize(new Dimension(800, 500));
+        panelEdicion.setPreferredSize(new java.awt.Dimension(800, 500));
 
         panelDatosPersonales.setOpaque(false);
-        panelDatosPersonales.setPreferredSize(new Dimension(290, 300));
+        panelDatosPersonales.setPreferredSize(new java.awt.Dimension(290, 300));
 
-        lblApellido.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        lblApellido.setForeground(new Color(255, 255, 255));
+        lblApellido.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        lblApellido.setForeground(new java.awt.Color(255, 255, 255));
         lblApellido.setText("Apellido");
-        lblApellido.setPreferredSize(new Dimension(54, 20));
+        lblApellido.setPreferredSize(new java.awt.Dimension(54, 20));
 
-        txtApellido.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        txtApellido.setForeground(new Color(0, 0, 0));
-        txtApellido.setMinimumSize(new Dimension(68, 30));
-        txtApellido.setPreferredSize(new Dimension(190, 30));
+        txtApellido.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        txtApellido.setForeground(new java.awt.Color(0, 0, 0));
+        txtApellido.setMinimumSize(new java.awt.Dimension(68, 30));
+        txtApellido.setPreferredSize(new java.awt.Dimension(190, 30));
 
-        lblNombre.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        lblNombre.setForeground(new Color(255, 255, 255));
+        lblNombre.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setText("Nombre");
-        lblNombre.setPreferredSize(new Dimension(52, 20));
+        lblNombre.setPreferredSize(new java.awt.Dimension(52, 20));
 
-        txtNombre.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        txtNombre.setForeground(new Color(0, 0, 0));
-        txtNombre.setPreferredSize(new Dimension(190, 30));
+        txtNombre.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
+        txtNombre.setPreferredSize(new java.awt.Dimension(190, 30));
 
-        lblFecha.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        lblFecha.setForeground(new Color(255, 255, 255));
+        lblFecha.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        lblFecha.setForeground(new java.awt.Color(255, 255, 255));
         lblFecha.setText("Fec. Nac.");
-        lblFecha.setPreferredSize(new Dimension(60, 20));
+        lblFecha.setPreferredSize(new java.awt.Dimension(60, 20));
 
-        lblDatosPersonales.setFont(new Font("Roboto", Font.BOLD, 24)); // NOI18N
-        lblDatosPersonales.setForeground(new Color(255, 255, 255));
+        lblDatosPersonales.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
+        lblDatosPersonales.setForeground(new java.awt.Color(255, 255, 255));
         lblDatosPersonales.setText("Datos Personales");
-        lblDatosPersonales.setPreferredSize(new Dimension(190, 30));
+        lblDatosPersonales.setPreferredSize(new java.awt.Dimension(190, 30));
 
-        txtBarrio.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        txtBarrio.setForeground(new Color(0, 0, 0));
-        txtBarrio.setPreferredSize(new Dimension(200, 30));
+        txtBarrio.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        txtBarrio.setForeground(new java.awt.Color(0, 0, 0));
+        txtBarrio.setPreferredSize(new java.awt.Dimension(200, 30));
 
-        lblBarrio.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        lblBarrio.setForeground(new Color(255, 255, 255));
+        lblBarrio.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        lblBarrio.setForeground(new java.awt.Color(255, 255, 255));
         lblBarrio.setText("Barrio");
-        lblBarrio.setPreferredSize(new Dimension(40, 20));
+        lblBarrio.setPreferredSize(new java.awt.Dimension(40, 20));
 
-        lblCalle.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        lblCalle.setForeground(new Color(255, 255, 255));
+        lblCalle.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        lblCalle.setForeground(new java.awt.Color(255, 255, 255));
         lblCalle.setText("Calle");
-        lblCalle.setPreferredSize(new Dimension(34, 20));
+        lblCalle.setPreferredSize(new java.awt.Dimension(34, 20));
 
-        txtCalle.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        txtCalle.setForeground(new Color(0, 0, 0));
-        txtCalle.setPreferredSize(new Dimension(200, 30));
+        txtCalle.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        txtCalle.setForeground(new java.awt.Color(0, 0, 0));
+        txtCalle.setPreferredSize(new java.awt.Dimension(200, 30));
 
-        lblDomicilio.setFont(new Font("Roboto", Font.BOLD, 24)); // NOI18N
-        lblDomicilio.setForeground(new Color(255, 255, 255));
+        lblDomicilio.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
+        lblDomicilio.setForeground(new java.awt.Color(255, 255, 255));
         lblDomicilio.setText("Domicilio");
-        lblDomicilio.setPreferredSize(new Dimension(102, 30));
+        lblDomicilio.setPreferredSize(new java.awt.Dimension(102, 30));
 
-        calendarioNac.setForeground(new Color(0, 0, 0));
-        calendarioNac.setFont(new Font("Roboto", Font.BOLD, 12)); // NOI18N
+        calendarioNac.setForeground(new java.awt.Color(0, 0, 0));
+        calendarioNac.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 12)); // NOI18N
         calendarioNac.setOpaque(false);
-        calendarioNac.setPreferredSize(new Dimension(190, 30));
+        calendarioNac.setPreferredSize(new java.awt.Dimension(190, 30));
 
-        GroupLayout panelDatosPersonalesLayout = new GroupLayout(
+        javax.swing.GroupLayout panelDatosPersonalesLayout =
+                new javax.swing.GroupLayout(
                 panelDatosPersonales);
         panelDatosPersonales.setLayout(panelDatosPersonalesLayout);
         panelDatosPersonalesLayout.setHorizontalGroup(
                 panelDatosPersonalesLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGroup(
+                        javax.swing.GroupLayout.Alignment.LEADING).addGroup(
                         panelDatosPersonalesLayout.createSequentialGroup().addGroup(
                                 panelDatosPersonalesLayout.createParallelGroup(
-                                        GroupLayout.Alignment.LEADING).addGroup(
+                                        javax.swing.GroupLayout.Alignment.LEADING).addGroup(
                                         panelDatosPersonalesLayout.createSequentialGroup().addContainerGap().addGroup(
                                                 panelDatosPersonalesLayout.createParallelGroup(
-                                                        GroupLayout.Alignment.LEADING).addComponent(
+                                                        javax.swing.GroupLayout.Alignment.LEADING).addComponent(
                                                         lblFecha,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                                         lblNombre,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                                         lblApellido,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE)).addGap(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(
                                                 6, 6, 6).addGroup(
                                                 panelDatosPersonalesLayout.createParallelGroup(
-                                                        GroupLayout.Alignment.LEADING).addGroup(
+                                                        javax.swing.GroupLayout.Alignment.LEADING).addGroup(
                                                         panelDatosPersonalesLayout.createParallelGroup(
-                                                                GroupLayout.Alignment.TRAILING,
+                                                                javax.swing.GroupLayout.Alignment.TRAILING,
                                                                 false).addComponent(
                                                                 txtApellido,
-                                                                GroupLayout.DEFAULT_SIZE,
-                                                                GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 Short.MAX_VALUE).addComponent(
                                                                 txtNombre,
-                                                                GroupLayout.DEFAULT_SIZE,
-                                                                GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 Short.MAX_VALUE)).addComponent(
                                                         calendarioNac,
-                                                        GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
                                                         130,
-                                                        GroupLayout.PREFERRED_SIZE))).addGroup(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))).addGroup(
                                         panelDatosPersonalesLayout.createSequentialGroup().addGap(
                                                 6, 6, 6).addGroup(
                                                 panelDatosPersonalesLayout.createParallelGroup(
-                                                        GroupLayout.Alignment.CENTER).addComponent(
+                                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
                                                         lblCalle,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                                         lblBarrio,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE)).addPreferredGap(
-                                                LayoutStyle.ComponentPlacement.RELATED).addGroup(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(
                                                 panelDatosPersonalesLayout.createParallelGroup(
-                                                        GroupLayout.Alignment.CENTER).addComponent(
+                                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
                                                         txtCalle,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                                         txtBarrio,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE))).addGroup(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))).addGroup(
                                         panelDatosPersonalesLayout.createSequentialGroup().addContainerGap().addComponent(
                                                 lblDomicilio,
-                                                GroupLayout.PREFERRED_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE)).addGroup(
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)).addGroup(
                                         panelDatosPersonalesLayout.createSequentialGroup().addContainerGap().addComponent(
                                                 lblDatosPersonales,
-                                                GroupLayout.PREFERRED_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE))).addContainerGap(
-                                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))).addContainerGap(
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)));
         panelDatosPersonalesLayout.setVerticalGroup(
                 panelDatosPersonalesLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGroup(
+                        javax.swing.GroupLayout.Alignment.LEADING).addGroup(
                         panelDatosPersonalesLayout.createSequentialGroup().addGap(
                                 12, 12, 12).addComponent(lblDatosPersonales,
-                                GroupLayout.PREFERRED_SIZE,
-                                GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE).addGap(20, 20,
-                                20).addGroup(
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE).addGap(
+                                20, 20, 20).addGroup(
                                 panelDatosPersonalesLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        lblApellido, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        txtApellido, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(30,
-                                30, 30).addGroup(
+                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
+                                        lblApellido,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+                                        txtApellido,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(
+                                30, 30, 30).addGroup(
                                 panelDatosPersonalesLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        lblNombre, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        txtNombre, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(30,
-                                30, 30).addGroup(
+                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
+                                        lblNombre,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+                                        txtNombre,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(
+                                30, 30, 30).addGroup(
                                 panelDatosPersonalesLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        lblFecha, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
+                                        lblFecha,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                         calendarioNac,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(18,
-                                18, 18).addComponent(lblDomicilio,
-                                GroupLayout.PREFERRED_SIZE,
-                                GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE).addGap(20, 20,
-                                20).addGroup(
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(
+                                18, 18, 18).addComponent(lblDomicilio,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE).addGap(
+                                20, 20, 20).addGroup(
                                 panelDatosPersonalesLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        lblCalle, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        txtCalle, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(30,
-                                30, 30).addGroup(
+                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
+                                        lblCalle,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+                                        txtCalle,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(
+                                30, 30, 30).addGroup(
                                 panelDatosPersonalesLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        lblBarrio, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        txtBarrio, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addContainerGap(
-                                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
+                                        lblBarrio,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+                                        txtBarrio,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addContainerGap(
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)));
 
         panelDomicilio.setOpaque(false);
 
         lblDatosPersonales1.setFont(
-                new Font("Roboto", Font.BOLD, 24)); // NOI18N
-        lblDatosPersonales1.setForeground(new Color(255, 255, 255));
+                new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
+        lblDatosPersonales1.setForeground(new java.awt.Color(255, 255, 255));
         lblDatosPersonales1.setText("Membresia");
-        lblDatosPersonales1.setPreferredSize(new Dimension(122, 30));
+        lblDatosPersonales1.setPreferredSize(new java.awt.Dimension(122, 30));
 
-        lblMembresia.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        lblMembresia.setForeground(new Color(255, 255, 255));
+        lblMembresia.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        lblMembresia.setForeground(new java.awt.Color(255, 255, 255));
         lblMembresia.setText("Tipo");
-        lblMembresia.setPreferredSize(new Dimension(30, 20));
+        lblMembresia.setPreferredSize(new java.awt.Dimension(30, 20));
 
-        cbxMembresia.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        cbxMembresia.setForeground(new Color(0, 0, 0));
-        cbxMembresia.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        cbxMembresia.setPreferredSize(new Dimension(150, 30));
+        cbxMembresia.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        cbxMembresia.setForeground(new java.awt.Color(0, 0, 0));
+        cbxMembresia.setCursor(
+                new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cbxMembresia.setPreferredSize(new java.awt.Dimension(150, 30));
 
-        lblMonto.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        lblMonto.setForeground(new Color(255, 255, 255));
+        lblMonto.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        lblMonto.setForeground(new java.awt.Color(255, 255, 255));
         lblMonto.setText("Monto");
-        lblMonto.setPreferredSize(new Dimension(42, 20));
+        lblMonto.setPreferredSize(new java.awt.Dimension(42, 20));
 
-        txtMonto.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        txtMonto.setForeground(new Color(0, 0, 0));
-        txtMonto.setPreferredSize(new Dimension(170, 30));
+        txtMonto.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        txtMonto.setForeground(new java.awt.Color(0, 0, 0));
+        txtMonto.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        lblMembresia1.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        lblMembresia1.setForeground(new Color(255, 255, 255));
+        lblMembresia1.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        lblMembresia1.setForeground(new java.awt.Color(255, 255, 255));
         lblMembresia1.setText("Inicia el");
-        lblMembresia1.setPreferredSize(new Dimension(50, 20));
+        lblMembresia1.setPreferredSize(new java.awt.Dimension(50, 20));
 
-        calendarioInicio.setForeground(new Color(0, 0, 0));
-        calendarioInicio.setFont(new Font("Roboto", Font.BOLD, 12)); // NOI18N
+        calendarioInicio.setForeground(new java.awt.Color(0, 0, 0));
+        calendarioInicio.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 12)); // NOI18N
         calendarioInicio.setOpaque(false);
-        calendarioInicio.setPreferredSize(new Dimension(170, 30));
+        calendarioInicio.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        lblMembresia2.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        lblMembresia2.setForeground(new Color(255, 255, 255));
+        lblMembresia2.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        lblMembresia2.setForeground(new java.awt.Color(255, 255, 255));
         lblMembresia2.setText("Finaliza el");
-        lblMembresia2.setPreferredSize(new Dimension(66, 20));
+        lblMembresia2.setPreferredSize(new java.awt.Dimension(66, 20));
 
-        calendarioFin.setForeground(new Color(0, 0, 0));
-        calendarioFin.setFont(new Font("Roboto", Font.BOLD, 12)); // NOI18N
+        calendarioFin.setForeground(new java.awt.Color(0, 0, 0));
+        calendarioFin.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 12)); // NOI18N
         calendarioFin.setOpaque(false);
-        calendarioFin.setPreferredSize(new Dimension(170, 30));
+        calendarioFin.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        lblContacto.setFont(new Font("Roboto", Font.BOLD, 24)); // NOI18N
-        lblContacto.setForeground(new Color(255, 255, 255));
+        lblContacto.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
+        lblContacto.setForeground(new java.awt.Color(255, 255, 255));
         lblContacto.setText("Contacto");
-        lblContacto.setPreferredSize(new Dimension(100, 30));
+        lblContacto.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        lblEmail.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        lblEmail.setForeground(new Color(255, 255, 255));
+        lblEmail.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(255, 255, 255));
         lblEmail.setText("Email");
-        lblEmail.setPreferredSize(new Dimension(36, 20));
+        lblEmail.setPreferredSize(new java.awt.Dimension(36, 20));
 
-        txtEmail.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        txtEmail.setForeground(new Color(0, 0, 0));
-        txtEmail.setPreferredSize(new Dimension(220, 30));
+        txtEmail.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(0, 0, 0));
+        txtEmail.setPreferredSize(new java.awt.Dimension(220, 30));
 
-        lblTelefono.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        lblTelefono.setForeground(new Color(255, 255, 255));
+        lblTelefono.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
         lblTelefono.setText("Telefono");
-        lblTelefono.setPreferredSize(new Dimension(58, 20));
+        lblTelefono.setPreferredSize(new java.awt.Dimension(58, 20));
 
-        txtTelefono.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        txtTelefono.setForeground(new Color(0, 0, 0));
-        txtTelefono.setPreferredSize(new Dimension(220, 30));
+        txtTelefono.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        txtTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        txtTelefono.setPreferredSize(new java.awt.Dimension(220, 30));
 
-        GroupLayout panelDomicilioLayout = new GroupLayout(panelDomicilio);
+        javax.swing.GroupLayout panelDomicilioLayout =
+                new javax.swing.GroupLayout(
+                panelDomicilio);
         panelDomicilio.setLayout(panelDomicilioLayout);
         panelDomicilioLayout.setHorizontalGroup(
                 panelDomicilioLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGroup(
+                        javax.swing.GroupLayout.Alignment.LEADING).addGroup(
                         panelDomicilioLayout.createSequentialGroup().addGroup(
                                 panelDomicilioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.LEADING).addGroup(
+                                        javax.swing.GroupLayout.Alignment.LEADING).addGroup(
                                         panelDomicilioLayout.createSequentialGroup().addGap(
                                                 6, 6, 6).addGroup(
                                                 panelDomicilioLayout.createParallelGroup(
-                                                        GroupLayout.Alignment.LEADING).addComponent(
+                                                        javax.swing.GroupLayout.Alignment.LEADING).addComponent(
                                                         lblContacto,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                                         lblDatosPersonales1,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE))).addGroup(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))).addGroup(
                                         panelDomicilioLayout.createSequentialGroup().addContainerGap().addGroup(
                                                 panelDomicilioLayout.createParallelGroup(
-                                                        GroupLayout.Alignment.CENTER).addComponent(
+                                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
                                                         lblEmail,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                                         lblTelefono,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE)).addPreferredGap(
-                                                LayoutStyle.ComponentPlacement.RELATED).addGroup(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(
                                                 panelDomicilioLayout.createParallelGroup(
-                                                        GroupLayout.Alignment.LEADING).addComponent(
+                                                        javax.swing.GroupLayout.Alignment.LEADING).addComponent(
                                                         txtEmail,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                                         txtTelefono,
-                                                        GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
                                                         150,
-                                                        GroupLayout.PREFERRED_SIZE))).addGroup(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))).addGroup(
                                         panelDomicilioLayout.createSequentialGroup().addGap(
                                                 6, 6, 6).addGroup(
                                                 panelDomicilioLayout.createParallelGroup(
-                                                        GroupLayout.Alignment.CENTER).addComponent(
+                                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
                                                         lblMembresia,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                                         lblMembresia1,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                                         lblMembresia2,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                                         lblMonto,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE)).addPreferredGap(
-                                                LayoutStyle.ComponentPlacement.RELATED).addGroup(
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(
                                                 panelDomicilioLayout.createParallelGroup(
-                                                        GroupLayout.Alignment.TRAILING).addComponent(
+                                                        javax.swing.GroupLayout.Alignment.TRAILING).addComponent(
                                                         cbxMembresia,
-                                                        GroupLayout.Alignment.LEADING,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE).addGroup(
-                                                        GroupLayout.Alignment.LEADING,
+                                                        javax.swing.GroupLayout.Alignment.LEADING,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE).addGroup(
+                                                        javax.swing.GroupLayout.Alignment.LEADING,
                                                         panelDomicilioLayout.createParallelGroup(
-                                                                GroupLayout.Alignment.TRAILING,
+                                                                javax.swing.GroupLayout.Alignment.TRAILING,
                                                                 false).addComponent(
                                                                 txtMonto,
-                                                                GroupLayout.Alignment.LEADING,
-                                                                GroupLayout.DEFAULT_SIZE,
+                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                javax.swing.GroupLayout.DEFAULT_SIZE,
                                                                 130,
                                                                 Short.MAX_VALUE).addComponent(
                                                                 calendarioFin,
-                                                                GroupLayout.Alignment.LEADING,
-                                                                GroupLayout.PREFERRED_SIZE,
+                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                 0,
                                                                 Short.MAX_VALUE).addComponent(
                                                                 calendarioInicio,
-                                                                GroupLayout.Alignment.LEADING,
-                                                                GroupLayout.PREFERRED_SIZE,
+                                                                javax.swing.GroupLayout.Alignment.LEADING,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
                                                                 0,
                                                                 Short.MAX_VALUE))))).addContainerGap(
-                                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)));
         panelDomicilioLayout.setVerticalGroup(
                 panelDomicilioLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGroup(
+                        javax.swing.GroupLayout.Alignment.LEADING).addGroup(
                         panelDomicilioLayout.createSequentialGroup().addGap(12,
                                 12, 12).addComponent(lblContacto,
-                                GroupLayout.PREFERRED_SIZE,
-                                GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE).addGap(20, 20,
-                                20).addGroup(
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE).addGap(
+                                20, 20, 20).addGroup(
                                 panelDomicilioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        lblEmail, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        txtEmail, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(30,
-                                30, 30).addGroup(
+                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
+                                        lblEmail,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+                                        txtEmail,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(
+                                30, 30, 30).addGroup(
                                 panelDomicilioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        lblTelefono, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        txtTelefono, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(18,
-                                18, 18).addComponent(lblDatosPersonales1,
-                                GroupLayout.PREFERRED_SIZE,
-                                GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE).addGap(20, 20,
-                                20).addGroup(
+                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
+                                        lblTelefono,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+                                        txtTelefono,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(
+                                18, 18, 18).addComponent(lblDatosPersonales1,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE).addGap(
+                                20, 20, 20).addGroup(
                                 panelDomicilioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
+                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
                                         lblMembresia,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                         cbxMembresia,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(30,
-                                30, 30).addGroup(
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(
+                                30, 30, 30).addGroup(
                                 panelDomicilioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
+                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
                                         lblMembresia1,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                         calendarioInicio,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(30,
-                                30, 30).addGroup(
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(
+                                30, 30, 30).addGroup(
                                 panelDomicilioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
+                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
                                         lblMembresia2,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                         calendarioFin,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(30,
-                                30, 30).addGroup(
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(
+                                30, 30, 30).addGroup(
                                 panelDomicilioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        lblMonto, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        txtMonto, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addContainerGap(
-                                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
+                                        lblMonto,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
+                                        txtMonto,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addContainerGap(
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)));
 
         btnGuardar.setBackground(new Color(0, 0, 0, 0));
-        btnGuardar.setForeground(new Color(255, 255, 255));
-        btnGuardar.setIcon(new ImageIcon("D:\\Ale\\Mis Cursos\\Curso " +
-                                         "Java\\Netbeans\\GYM\\src\\icon" +
-                                         "\\guardar.png")); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setIcon(new javax.swing.ImageIcon(
+                "D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson " +
+                "Gimnasio\\src\\icon\\guardar.png")); // NOI18N
         btnGuardar.setToolTipText("Guardar datos");
         btnGuardar.setColor(new Color(0, 0, 0, 0));
-        btnGuardar.setColorClick(new Color(10, 193, 18));
-        btnGuardar.setColorOver(new Color(15, 225, 24));
-        btnGuardar.setFont(
-                new Font("Roboto", Font.BOLD | Font.ITALIC, 14)); // NOI18N
-        btnGuardar.setHorizontalTextPosition(SwingConstants.CENTER);
+        btnGuardar.setColorClick(new java.awt.Color(10, 193, 18));
+        btnGuardar.setColorOver(new java.awt.Color(15, 225, 24));
+        btnGuardar.setFont(new java.awt.Font("Roboto", Font.BOLD | Font.ITALIC,
+                14)); // NOI18N
+        btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setIconTextGap(10);
-        btnGuardar.setMargin(new Insets(2, 14, 2, 14));
-        btnGuardar.setMaximumSize(new Dimension(50, 50));
-        btnGuardar.setMinimumSize(new Dimension(50, 50));
-        btnGuardar.setPreferredSize(new Dimension(50, 50));
+        btnGuardar.setMargin(new java.awt.Insets(2, 14, 2, 14));
+        btnGuardar.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnGuardar.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnGuardar.setPreferredSize(new java.awt.Dimension(50, 50));
 
         btnLimpiar.setBackground(new Color(0, 0, 0, 0));
-        btnLimpiar.setForeground(new Color(255, 255, 255));
-        btnLimpiar.setIcon(new ImageIcon("D:\\Ale\\Mis Cursos\\Curso " +
-                                         "Java\\Netbeans\\GYM\\src\\icon" +
-                                         "\\limpiar.png")); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(
+                "D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson " +
+                "Gimnasio\\src\\icon\\limpiar.png")); // NOI18N
         btnLimpiar.setToolTipText("Limpiar");
         btnLimpiar.setColor(new Color(0, 0, 0, 0));
-        btnLimpiar.setColorClick(new Color(177, 34, 219));
-        btnLimpiar.setColorOver(new Color(196, 49, 240));
-        btnLimpiar.setFont(
-                new Font("Roboto", Font.BOLD | Font.ITALIC, 14)); // NOI18N
-        btnLimpiar.setHorizontalTextPosition(SwingConstants.CENTER);
+        btnLimpiar.setColorClick(new java.awt.Color(177, 34, 219));
+        btnLimpiar.setColorOver(new java.awt.Color(196, 49, 240));
+        btnLimpiar.setFont(new java.awt.Font("Roboto", Font.BOLD | Font.ITALIC,
+                14)); // NOI18N
+        btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLimpiar.setIconTextGap(10);
-        btnLimpiar.setMargin(new Insets(2, 14, 2, 14));
-        btnLimpiar.setMaximumSize(new Dimension(50, 50));
-        btnLimpiar.setMinimumSize(new Dimension(50, 50));
-        btnLimpiar.setPreferredSize(new Dimension(50, 50));
+        btnLimpiar.setMargin(new java.awt.Insets(2, 14, 2, 14));
+        btnLimpiar.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnLimpiar.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnLimpiar.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        GroupLayout panelEdicionLayout = new GroupLayout(panelEdicion);
+        javax.swing.GroupLayout panelEdicionLayout =
+                new javax.swing.GroupLayout(
+                panelEdicion);
         panelEdicion.setLayout(panelEdicionLayout);
         panelEdicionLayout.setHorizontalGroup(
                 panelEdicionLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGroup(
+                        javax.swing.GroupLayout.Alignment.LEADING).addGroup(
                         panelEdicionLayout.createSequentialGroup().addGap(70,
                                 70, 70).addGroup(
                                 panelEdicionLayout.createParallelGroup(
-                                        GroupLayout.Alignment.LEADING,
+                                        javax.swing.GroupLayout.Alignment.LEADING,
                                         false).addGroup(
                                         panelEdicionLayout.createSequentialGroup().addComponent(
                                                 btnGuardar,
-                                                GroupLayout.PREFERRED_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE).addGap(
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE).addGap(
                                                 30, 30, 30).addComponent(
                                                 btnLimpiar,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE)).addComponent(
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)).addComponent(
                                         panelDatosPersonales,
-                                        GroupLayout.PREFERRED_SIZE, 268,
-                                        GroupLayout.PREFERRED_SIZE)).addPreferredGap(
-                                LayoutStyle.ComponentPlacement.RELATED, 96,
-                                Short.MAX_VALUE).addComponent(panelDomicilio,
-                                GroupLayout.PREFERRED_SIZE,
-                                GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE).addGap(70, 70,
-                                70)));
+                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                        268,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addPreferredGap(
+                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
+                                96, Short.MAX_VALUE).addComponent(
+                                panelDomicilio,
+                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                javax.swing.GroupLayout.PREFERRED_SIZE).addGap(
+                                70, 70, 70)));
         panelEdicionLayout.setVerticalGroup(
                 panelEdicionLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGroup(
+                        javax.swing.GroupLayout.Alignment.LEADING).addGroup(
                         panelEdicionLayout.createSequentialGroup().addContainerGap().addGroup(
                                 panelEdicionLayout.createParallelGroup(
-                                        GroupLayout.Alignment.LEADING).addGroup(
+                                        javax.swing.GroupLayout.Alignment.LEADING).addGroup(
                                         panelEdicionLayout.createSequentialGroup().addComponent(
                                                 panelDomicilio,
-                                                GroupLayout.PREFERRED_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE).addContainerGap(
-                                                GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
                                                 Short.MAX_VALUE)).addGroup(
                                         panelEdicionLayout.createSequentialGroup().addComponent(
                                                 panelDatosPersonales,
-                                                GroupLayout.PREFERRED_SIZE, 376,
-                                                GroupLayout.PREFERRED_SIZE).addPreferredGap(
-                                                LayoutStyle.ComponentPlacement.RELATED,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                376,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(
+                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED,
                                                 38, Short.MAX_VALUE).addGroup(
                                                 panelEdicionLayout.createParallelGroup(
-                                                        GroupLayout.Alignment.CENTER).addComponent(
+                                                        javax.swing.GroupLayout.Alignment.CENTER).addComponent(
                                                         btnGuardar,
-                                                        GroupLayout.Alignment.LEADING,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE).addComponent(
+                                                        javax.swing.GroupLayout.Alignment.LEADING,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE).addComponent(
                                                         btnLimpiar,
-                                                        GroupLayout.Alignment.LEADING,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        GroupLayout.PREFERRED_SIZE)).addGap(
+                                                        javax.swing.GroupLayout.Alignment.LEADING,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)).addGap(
                                                 30, 30, 30)))));
 
-        GroupLayout layout = new GroupLayout(this);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addComponent(panelEdicion,
-                GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                Short.MAX_VALUE));
+                javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+                panelEdicion, javax.swing.GroupLayout.DEFAULT_SIZE,
+                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
         layout.setVerticalGroup(layout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addComponent(panelEdicion,
-                GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                GroupLayout.PREFERRED_SIZE));
+                javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+                panelEdicion, javax.swing.GroupLayout.PREFERRED_SIZE,
+                javax.swing.GroupLayout.DEFAULT_SIZE,
+                javax.swing.GroupLayout.PREFERRED_SIZE));
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -800,31 +844,31 @@ public class RegistrarCliente extends JPanel {
     private com.toedter.calendar.JDateChooser calendarioFin;
     private com.toedter.calendar.JDateChooser calendarioInicio;
     private com.toedter.calendar.JDateChooser calendarioNac;
-    private JComboBox<String> cbxMembresia;
-    private JLabel lblApellido;
-    private JLabel lblBarrio;
-    private JLabel lblCalle;
-    private JLabel lblContacto;
-    private JLabel lblDatosPersonales;
-    private JLabel lblDatosPersonales1;
-    private JLabel lblDomicilio;
-    private JLabel lblEmail;
-    private JLabel lblFecha;
-    private JLabel lblMembresia;
-    private JLabel lblMembresia1;
-    private JLabel lblMembresia2;
-    private JLabel lblMonto;
-    private JLabel lblNombre;
-    private JLabel lblTelefono;
-    private JPanel panelDatosPersonales;
-    private JPanel panelDomicilio;
-    private JPanel panelEdicion;
-    private JTextField txtApellido;
-    private JTextField txtBarrio;
-    private JTextField txtCalle;
-    private JTextField txtEmail;
-    private JTextField txtMonto;
-    private JTextField txtNombre;
-    private JTextField txtTelefono;
+    private javax.swing.JComboBox<String> cbxMembresia;
+    private javax.swing.JLabel lblApellido;
+    private javax.swing.JLabel lblBarrio;
+    private javax.swing.JLabel lblCalle;
+    private javax.swing.JLabel lblContacto;
+    private javax.swing.JLabel lblDatosPersonales;
+    private javax.swing.JLabel lblDatosPersonales1;
+    private javax.swing.JLabel lblDomicilio;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblMembresia;
+    private javax.swing.JLabel lblMembresia1;
+    private javax.swing.JLabel lblMembresia2;
+    private javax.swing.JLabel lblMonto;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblTelefono;
+    private javax.swing.JPanel panelDatosPersonales;
+    private javax.swing.JPanel panelDomicilio;
+    private javax.swing.JPanel panelEdicion;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtBarrio;
+    private javax.swing.JTextField txtCalle;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtMonto;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

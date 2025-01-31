@@ -112,7 +112,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\GYM\src\icon\eliminar.png"/>
+              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\eliminar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="es/xalpha/gym/vista/Bundle.properties" key="VerClientes.btnEditar.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -251,7 +251,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\GYM\src\icon\buscar.png"/>
+              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\buscar.png"/>
             </Property>
             <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new Color(0, 0, 0, 0)" type="code"/>
@@ -277,7 +277,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\GYM\src\icon\orden asc.png"/>
+              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\orden asc.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="es/xalpha/gym/vista/Bundle.properties" key="VerClientes.btnAsc.toolTipText" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
@@ -316,7 +316,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\GYM\src\icon\orden desc.png"/>
+              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\orden desc.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -353,7 +353,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\GYM\src\icon\editar.png"/>
+              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\editar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="es/xalpha/gym/vista/Bundle.properties" key="VerClientes.btnEditar.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>

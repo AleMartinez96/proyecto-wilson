@@ -650,7 +650,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\GYM\src\icon\guardar.png"/>
+              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\guardar.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Guardar datos"/>
             <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -690,7 +690,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\GYM\src\icon\limpiar.png"/>
+              <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\limpiar.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Limpiar"/>
             <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">

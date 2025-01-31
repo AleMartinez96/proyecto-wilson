@@ -11,8 +11,6 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -232,308 +230,227 @@ public class VerConfiguracion extends JPanel {
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelEditable = new JPanel();
+        panelEditable = new javax.swing.JPanel();
         btnActualizar = new es.xalpha.gym.vista.BotonRedondeado();
         btnReubicar = new es.xalpha.gym.vista.BotonRedondeado();
-        panelFormulario = new JPanel();
-        lblNombre = new JLabel();
-        txtNombre = new JTextField();
-        lblCalle = new JLabel();
-        txtCalle = new JTextField();
-        lblEmail = new JLabel();
-        txtEmail = new JTextField();
-        lblTelefono = new JLabel();
-        txtTelefono = new JTextField();
-        cbxMembresia = new JComboBox<>();
+        panelFormulario = new javax.swing.JPanel();
+        lblNombre = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        lblCalle = new javax.swing.JLabel();
+        txtCalle = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        lblTelefono = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
+        cbxMembresia = new javax.swing.JComboBox<>();
         btnMas = new es.xalpha.gym.vista.BotonRedondeado();
         btnMenos = new es.xalpha.gym.vista.BotonRedondeado();
-        lblMembresia = new JLabel();
-        lblImagen = new JLabel();
+        lblMembresia = new javax.swing.JLabel();
+        lblImagen = new javax.swing.JLabel();
 
-        setMaximumSize(new Dimension(800, 500));
-        setMinimumSize(new Dimension(800, 500));
-        setPreferredSize(new Dimension(800, 500));
+        setMaximumSize(new java.awt.Dimension(800, 500));
+        setMinimumSize(new java.awt.Dimension(800, 500));
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
-        panelEditable.setMaximumSize(new Dimension(800, 500));
-        panelEditable.setMinimumSize(new Dimension(800, 500));
+        panelEditable.setMaximumSize(new java.awt.Dimension(800, 500));
+        panelEditable.setMinimumSize(new java.awt.Dimension(800, 500));
         panelEditable.setOpaque(false);
-        panelEditable.setPreferredSize(new Dimension(800, 500));
+        panelEditable.setPreferredSize(new java.awt.Dimension(800, 500));
 
         btnActualizar.setBackground(new Color(0, 0, 0, 0));
-        btnActualizar.setForeground(new Color(255, 255, 255));
-        btnActualizar.setIcon(new ImageIcon("D:\\Ale\\Mis Cursos\\Curso " +
-                                            "Java\\Netbeans\\GYM\\src\\icon" +
-                                            "\\guardar.png")); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\guardar.png")); // NOI18N
         btnActualizar.setToolTipText("");
         btnActualizar.setColor(new Color(0, 0, 0, 0));
-        btnActualizar.setColorClick(new Color(10, 193, 18));
-        btnActualizar.setColorOver(new Color(15, 225, 24));
-        btnActualizar.setFont(
-                new Font("Roboto", Font.BOLD | Font.ITALIC, 12)); // NOI18N
-        btnActualizar.setHorizontalTextPosition(SwingConstants.CENTER);
+        btnActualizar.setColorClick(new java.awt.Color(10, 193, 18));
+        btnActualizar.setColorOver(new java.awt.Color(15, 225, 24));
+        btnActualizar.setFont(new java.awt.Font("Roboto",
+                Font.BOLD | Font.ITALIC, 12)); // NOI18N
+        btnActualizar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnActualizar.setIconTextGap(2);
-        btnActualizar.setMargin(new Insets(2, 14, 2, 14));
-        btnActualizar.setMaximumSize(new Dimension(50, 50));
-        btnActualizar.setMinimumSize(new Dimension(50, 50));
-        btnActualizar.setPreferredSize(new Dimension(50, 50));
+        btnActualizar.setMargin(new java.awt.Insets(2, 14, 2, 14));
+        btnActualizar.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnActualizar.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnActualizar.setPreferredSize(new java.awt.Dimension(50, 50));
 
         btnReubicar.setBackground(new Color(0, 0, 0, 0));
-        btnReubicar.setForeground(new Color(255, 255, 255));
-        btnReubicar.setIcon(new JLabel() {
-            public Icon getIcon() {
-                try {
-                    return new ImageIcon(
-                            new URI("file:/D:/Ale/Mis%20Cursos/Curso%20Java" +
-                                    "/Netbeans" +
-                                    "/GYM/src/icon/transferir.png").toURL());
-                } catch (java.net.MalformedURLException _) {
-                } catch (URISyntaxException e) {
-                    throw new RuntimeException(e);
-                }
-                return null;
-            }
-        }.getIcon());
+        btnReubicar.setForeground(new java.awt.Color(255, 255, 255));
+        btnReubicar.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\transferir.png")); // NOI18N
         btnReubicar.setToolTipText("");
         btnReubicar.setColor(new Color(0, 0, 0, 0));
-        btnReubicar.setColorClick(new Color(139, 49, 210));
-        btnReubicar.setColorOver(new Color(160, 58, 240));
-        btnReubicar.setFont(
-                new Font("Roboto", Font.BOLD | Font.ITALIC, 12)); // NOI18N
-        btnReubicar.setHorizontalTextPosition(SwingConstants.CENTER);
+        btnReubicar.setColorClick(new java.awt.Color(139, 49, 210));
+        btnReubicar.setColorOver(new java.awt.Color(160, 58, 240));
+        btnReubicar.setFont(new java.awt.Font("Roboto", Font.BOLD | Font.ITALIC, 12)); // NOI18N
+        btnReubicar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnReubicar.setIconTextGap(2);
-        btnReubicar.setMargin(new Insets(2, 14, 2, 14));
-        btnReubicar.setMaximumSize(new Dimension(50, 50));
-        btnReubicar.setMinimumSize(new Dimension(50, 50));
-        btnReubicar.setPreferredSize(new Dimension(50, 50));
+        btnReubicar.setMargin(new java.awt.Insets(2, 14, 2, 14));
+        btnReubicar.setMaximumSize(new java.awt.Dimension(50, 50));
+        btnReubicar.setMinimumSize(new java.awt.Dimension(50, 50));
+        btnReubicar.setPreferredSize(new java.awt.Dimension(50, 50));
 
         panelFormulario.setOpaque(false);
 
-        lblNombre.setFont(new Font("Roboto", Font.BOLD, 18)); // NOI18N
-        lblNombre.setForeground(new Color(255, 255, 255));
+        lblNombre.setFont(new java.awt.Font("Roboto", Font.BOLD, 18)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setText("Nombre del local");
 
-        txtNombre.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        txtNombre.setForeground(new Color(0, 0, 0));
-        txtNombre.setMinimumSize(new Dimension(70, 30));
-        txtNombre.setPreferredSize(new Dimension(70, 30));
+        txtNombre.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
+        txtNombre.setMinimumSize(new java.awt.Dimension(70, 30));
+        txtNombre.setPreferredSize(new java.awt.Dimension(70, 30));
 
-        lblCalle.setFont(new Font("Roboto", Font.BOLD, 18)); // NOI18N
-        lblCalle.setForeground(new Color(255, 255, 255));
+        lblCalle.setFont(new java.awt.Font("Roboto", Font.BOLD, 18)); // NOI18N
+        lblCalle.setForeground(new java.awt.Color(255, 255, 255));
         lblCalle.setText("Direccion");
 
-        txtCalle.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        txtCalle.setForeground(new Color(0, 0, 0));
-        txtCalle.setMinimumSize(new Dimension(70, 30));
-        txtCalle.setPreferredSize(new Dimension(70, 30));
+        txtCalle.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        txtCalle.setForeground(new java.awt.Color(0, 0, 0));
+        txtCalle.setMinimumSize(new java.awt.Dimension(70, 30));
+        txtCalle.setPreferredSize(new java.awt.Dimension(70, 30));
 
-        lblEmail.setFont(new Font("Roboto", Font.BOLD, 18)); // NOI18N
-        lblEmail.setForeground(new Color(255, 255, 255));
+        lblEmail.setFont(new java.awt.Font("Roboto", Font.BOLD, 18)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(255, 255, 255));
         lblEmail.setText("Email");
 
-        txtEmail.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        txtEmail.setForeground(new Color(0, 0, 0));
-        txtEmail.setMinimumSize(new Dimension(70, 30));
-        txtEmail.setPreferredSize(new Dimension(70, 30));
+        txtEmail.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        txtEmail.setForeground(new java.awt.Color(0, 0, 0));
+        txtEmail.setMinimumSize(new java.awt.Dimension(70, 30));
+        txtEmail.setPreferredSize(new java.awt.Dimension(70, 30));
 
-        lblTelefono.setFont(new Font("Roboto", Font.BOLD, 18)); // NOI18N
-        lblTelefono.setForeground(new Color(255, 255, 255));
+        lblTelefono.setFont(new java.awt.Font("Roboto", Font.BOLD, 18)); // NOI18N
+        lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
         lblTelefono.setText("Telefono");
 
-        txtTelefono.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        txtTelefono.setForeground(new Color(0, 0, 0));
-        txtTelefono.setMinimumSize(new Dimension(70, 30));
-        txtTelefono.setPreferredSize(new Dimension(70, 30));
+        txtTelefono.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        txtTelefono.setForeground(new java.awt.Color(0, 0, 0));
+        txtTelefono.setMinimumSize(new java.awt.Dimension(70, 30));
+        txtTelefono.setPreferredSize(new java.awt.Dimension(70, 30));
 
-        cbxMembresia.setFont(new Font("Roboto", Font.BOLD, 14)); // NOI18N
-        cbxMembresia.setMinimumSize(new Dimension(80, 30));
-        cbxMembresia.setPreferredSize(new Dimension(80, 30));
+        cbxMembresia.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        cbxMembresia.setMinimumSize(new java.awt.Dimension(80, 30));
+        cbxMembresia.setPreferredSize(new java.awt.Dimension(80, 30));
 
         btnMas.setBackground(new Color(0, 0, 0, 0));
-        btnMas.setIcon(new ImageIcon(
-                "D:\\Ale\\Mis Cursos\\Curso " + "Java\\Netbeans\\GYM\\src" +
-                "\\icon\\mas.png")); // NOI18N
+        btnMas.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\mas.png")); // NOI18N
         btnMas.setToolTipText("");
         btnMas.setColor(new Color(0, 0, 0, 0));
-        btnMas.setColorClick(new Color(10, 193, 18));
-        btnMas.setColorOver(new Color(15, 225, 24));
-        btnMas.setPreferredSize(new Dimension(40, 40));
+        btnMas.setColorClick(new java.awt.Color(10, 193, 18));
+        btnMas.setColorOver(new java.awt.Color(15, 225, 24));
+        btnMas.setPreferredSize(new java.awt.Dimension(40, 40));
 
         btnMenos.setBackground(new Color(0, 0, 0, 0));
-        btnMenos.setIcon(new ImageIcon("D:\\Ale\\Mis Cursos\\Curso " +
-                                       "Java\\Netbeans\\GYM\\src\\icon\\menos" +
-                                       ".png")); // NOI18N
+        btnMenos.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\menos.png")); // NOI18N
         btnMenos.setToolTipText("");
         btnMenos.setColor(new Color(0, 0, 0, 0));
-        btnMenos.setColorClick(new Color(220, 51, 51));
-        btnMenos.setColorOver(new Color(240, 56, 56));
-        btnMenos.setPreferredSize(new Dimension(40, 40));
+        btnMenos.setColorClick(new java.awt.Color(220, 51, 51));
+        btnMenos.setColorOver(new java.awt.Color(240, 56, 56));
+        btnMenos.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        lblMembresia.setFont(new Font("Roboto", Font.BOLD, 18)); // NOI18N
-        lblMembresia.setForeground(new Color(255, 255, 255));
+        lblMembresia.setFont(new java.awt.Font("Roboto", Font.BOLD, 18)); // NOI18N
+        lblMembresia.setForeground(new java.awt.Color(255, 255, 255));
         lblMembresia.setText("Membresia");
 
-        GroupLayout panelFormularioLayout = new GroupLayout(panelFormulario);
+        javax.swing.GroupLayout panelFormularioLayout = new javax.swing.GroupLayout(panelFormulario);
         panelFormulario.setLayout(panelFormularioLayout);
         panelFormularioLayout.setHorizontalGroup(
-                panelFormularioLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGroup(
-                        panelFormularioLayout.createSequentialGroup().addContainerGap().addGroup(
-                                panelFormularioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        lblCalle).addComponent(
-                                        lblEmail).addComponent(
-                                        lblTelefono).addComponent(
-                                        lblMembresia).addComponent(
-                                        lblNombre)).addGap(4, 4, 4).addGroup(
-                                panelFormularioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.LEADING,
-                                        false).addGroup(
-                                        panelFormularioLayout.createSequentialGroup().addComponent(
-                                                cbxMembresia,
-                                                GroupLayout.PREFERRED_SIZE, 140,
-                                                GroupLayout.PREFERRED_SIZE).addGap(
-                                                1, 1, 1).addComponent(btnMas,
-                                                GroupLayout.PREFERRED_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE).addGap(
-                                                1, 1, 1).addComponent(btnMenos,
-                                                GroupLayout.PREFERRED_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE)).addComponent(
-                                        txtTelefono, GroupLayout.PREFERRED_SIZE,
-                                        150,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        txtEmail, GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        Short.MAX_VALUE).addComponent(txtCalle,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        Short.MAX_VALUE).addComponent(txtNombre,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        Short.MAX_VALUE)).addContainerGap(
-                                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFormularioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblCalle)
+                    .addComponent(lblEmail)
+                    .addComponent(lblTelefono)
+                    .addComponent(lblMembresia)
+                    .addComponent(lblNombre))
+                .addGap(4, 4, 4)
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelFormularioLayout.createSequentialGroup()
+                        .addComponent(cbxMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(btnMas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)
+                        .addComponent(btnMenos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCalle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
         panelFormularioLayout.setVerticalGroup(
-                panelFormularioLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGroup(
-                        panelFormularioLayout.createSequentialGroup().addGap(24,
-                                24, 24).addGroup(
-                                panelFormularioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.BASELINE).addComponent(
-                                        txtNombre, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        lblNombre)).addGap(18, 18, 18).addGroup(
-                                panelFormularioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        lblCalle).addComponent(txtCalle,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(18,
-                                18, 18).addGroup(
-                                panelFormularioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.BASELINE).addComponent(
-                                        lblEmail).addComponent(txtEmail,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(18,
-                                18, 18).addGroup(
-                                panelFormularioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        lblTelefono).addComponent(txtTelefono,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(18,
-                                18, 18).addGroup(
-                                panelFormularioLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        cbxMembresia,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        btnMas, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        btnMenos, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        lblMembresia)).addContainerGap(
-                                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+            panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelFormularioLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombre))
+                .addGap(18, 18, 18)
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblCalle)
+                    .addComponent(txtCalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEmail)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblTelefono)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(cbxMembresia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMenos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMembresia))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
-        lblImagen.setPreferredSize(new Dimension(250, 250));
+        lblImagen.setPreferredSize(new java.awt.Dimension(250, 250));
 
-        GroupLayout panelEditableLayout = new GroupLayout(panelEditable);
+        javax.swing.GroupLayout panelEditableLayout = new javax.swing.GroupLayout(panelEditable);
         panelEditable.setLayout(panelEditableLayout);
         panelEditableLayout.setHorizontalGroup(
-                panelEditableLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGroup(
-                        panelEditableLayout.createSequentialGroup().addGap(50,
-                                50, 50).addGroup(
-                                panelEditableLayout.createParallelGroup(
-                                        GroupLayout.Alignment.LEADING).addGroup(
-                                        panelEditableLayout.createSequentialGroup().addComponent(
-                                                panelFormulario,
-                                                GroupLayout.PREFERRED_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE).addPreferredGap(
-                                                LayoutStyle.ComponentPlacement.RELATED,
-                                                74,
-                                                Short.MAX_VALUE).addComponent(
-                                                lblImagen,
-                                                GroupLayout.PREFERRED_SIZE, 250,
-                                                GroupLayout.PREFERRED_SIZE).addGap(
-                                                50, 50, 50)).addGroup(
-                                        panelEditableLayout.createSequentialGroup().addComponent(
-                                                btnActualizar,
-                                                GroupLayout.PREFERRED_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE).addGap(
-                                                30, 30, 30).addComponent(
-                                                btnReubicar,
-                                                GroupLayout.PREFERRED_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE).addContainerGap(
-                                                GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)))));
+            panelEditableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEditableLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(panelEditableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelEditableLayout.createSequentialGroup()
+                        .addComponent(panelFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50))
+                    .addGroup(panelEditableLayout.createSequentialGroup()
+                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(btnReubicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
         panelEditableLayout.setVerticalGroup(
-                panelEditableLayout.createParallelGroup(
-                        GroupLayout.Alignment.LEADING).addGroup(
-                        panelEditableLayout.createSequentialGroup().addGap(40,
-                                40, 40).addGroup(
-                                panelEditableLayout.createParallelGroup(
-                                        GroupLayout.Alignment.CENTER).addComponent(
-                                        lblImagen, GroupLayout.PREFERRED_SIZE,
-                                        250,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        panelFormulario,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addGap(74,
-                                74, 74).addGroup(
-                                panelEditableLayout.createParallelGroup(
-                                        GroupLayout.Alignment.TRAILING).addComponent(
-                                        btnActualizar,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE).addComponent(
-                                        btnReubicar, GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)).addContainerGap(
-                                74, Short.MAX_VALUE)));
+            panelEditableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelEditableLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(panelEditableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelFormulario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74)
+                .addGroup(panelEditableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReubicar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(74, Short.MAX_VALUE))
+        );
 
-        GroupLayout layout = new GroupLayout(this);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addComponent(panelEditable,
-                GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                Short.MAX_VALUE));
-        layout.setVerticalGroup(layout.createParallelGroup(
-                GroupLayout.Alignment.LEADING).addComponent(panelEditable,
-                GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                Short.MAX_VALUE));
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelEditable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panelEditable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -542,18 +459,18 @@ public class VerConfiguracion extends JPanel {
     private es.xalpha.gym.vista.BotonRedondeado btnMas;
     private es.xalpha.gym.vista.BotonRedondeado btnMenos;
     private es.xalpha.gym.vista.BotonRedondeado btnReubicar;
-    private JComboBox<String> cbxMembresia;
-    private JLabel lblCalle;
-    private JLabel lblEmail;
-    private JLabel lblImagen;
-    private JLabel lblMembresia;
-    private JLabel lblNombre;
-    private JLabel lblTelefono;
-    private JPanel panelEditable;
-    private JPanel panelFormulario;
-    private JTextField txtCalle;
-    private JTextField txtEmail;
-    private JTextField txtNombre;
-    private JTextField txtTelefono;
+    private javax.swing.JComboBox<String> cbxMembresia;
+    private javax.swing.JLabel lblCalle;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblImagen;
+    private javax.swing.JLabel lblMembresia;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblTelefono;
+    private javax.swing.JPanel panelEditable;
+    private javax.swing.JPanel panelFormulario;
+    private javax.swing.JTextField txtCalle;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

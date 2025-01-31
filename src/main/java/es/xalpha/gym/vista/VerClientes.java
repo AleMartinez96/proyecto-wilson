@@ -275,14 +275,14 @@ public class VerClientes extends JPanel {
 
         btnEliminar.setBackground(new Color(0, 0, 0, 0));
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEliminar.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\GYM\\src\\icon\\eliminar.png")); // NOI18N
+        btnEliminar.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\eliminar.png")); // NOI18N
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("es/xalpha/gym/vista/Bundle"); // NOI18N
         btnEliminar.setText(bundle.getString("VerClientes.btnEditar.text")); // NOI18N
         btnEliminar.setToolTipText("");
         btnEliminar.setColor(new Color(0, 0, 0, 0));
         btnEliminar.setColorClick(new java.awt.Color(220, 51, 51));
         btnEliminar.setColorOver(new java.awt.Color(240, 56, 56));
-        btnEliminar.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Roboto", Font.BOLD | Font.ITALIC, 14)); // NOI18N
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminar.setIconTextGap(10);
         btnEliminar.setMargin(new java.awt.Insets(2, 14, 2, 14));
@@ -291,12 +291,12 @@ public class VerClientes extends JPanel {
         btnEliminar.setName("btnEliminar"); // NOI18N
         btnEliminar.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jScrollPane1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jScrollPane1.setFont(new java.awt.Font("Roboto", Font.PLAIN, 12)); // NOI18N
         jScrollPane1.setName("jScrollPane1"); // NOI18N
         jScrollPane1.setOpaque(true);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(750, 310));
 
-        tabla.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        tabla.setFont(new java.awt.Font("Roboto", Font.PLAIN, 12)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -314,13 +314,13 @@ public class VerClientes extends JPanel {
         tabla.setRowMargin(1);
         jScrollPane1.setViewportView(tabla);
 
-        lblOrden.setFont(new java.awt.Font("Roboto", 1, 16)); // NOI18N
+        lblOrden.setFont(new java.awt.Font("Roboto", Font.BOLD, 16)); // NOI18N
         lblOrden.setForeground(new java.awt.Color(255, 255, 255));
         lblOrden.setText(bundle.getString("VerClientes.lblOrden.text")); // NOI18N
         lblOrden.setName("lblOrden"); // NOI18N
         lblOrden.setPreferredSize(new java.awt.Dimension(90, 20));
 
-        cbxOrden.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        cbxOrden.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
         cbxOrden.setForeground(new java.awt.Color(0, 0, 0));
         cbxOrden.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cbxOrden.setName("cbxOrden"); // NOI18N
@@ -333,7 +333,7 @@ public class VerClientes extends JPanel {
 
         btnBuscar.setBackground(new Color(0, 0, 0, 0));
         btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\GYM\\src\\icon\\buscar.png")); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\buscar.png")); // NOI18N
         btnBuscar.setColor(new Color(0, 0, 0, 0));
         btnBuscar.setColorClick(new java.awt.Color(65, 72, 213));
         btnBuscar.setColorOver(new java.awt.Color(71, 78, 231));
@@ -342,7 +342,7 @@ public class VerClientes extends JPanel {
 
         btnAsc.setBackground(new Color(0, 0, 0, 0));
         btnAsc.setForeground(new java.awt.Color(255, 255, 255));
-        btnAsc.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\GYM\\src\\icon\\orden asc.png")); // NOI18N
+        btnAsc.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\orden asc.png")); // NOI18N
         btnAsc.setToolTipText(bundle.getString("VerClientes.btnAsc.toolTipText")); // NOI18N
         btnAsc.setColor(new Color(0, 0, 0, 0));
         btnAsc.setColorClick(new java.awt.Color(65, 72, 213));
@@ -356,7 +356,7 @@ public class VerClientes extends JPanel {
 
         btnDesc.setBackground(new Color(0, 0, 0, 0));
         btnDesc.setForeground(new java.awt.Color(255, 255, 255));
-        btnDesc.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\GYM\\src\\icon\\orden desc.png")); // NOI18N
+        btnDesc.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\orden desc.png")); // NOI18N
         btnDesc.setToolTipText("");
         btnDesc.setColor(new Color(0, 0, 0, 0));
         btnDesc.setColorClick(new java.awt.Color(65, 72, 213));
@@ -370,13 +370,13 @@ public class VerClientes extends JPanel {
 
         btnEditar.setBackground(new Color(0, 0, 0, 0));
         btnEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditar.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\GYM\\src\\icon\\editar.png")); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon("D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson Gimnasio\\src\\icon\\editar.png")); // NOI18N
         btnEditar.setText(bundle.getString("VerClientes.btnEditar.text")); // NOI18N
         btnEditar.setActionCommand(bundle.getString("VerClientes.btnEditar.actionCommand")); // NOI18N
         btnEditar.setColor(new Color(0, 0, 0, 0));
         btnEditar.setColorClick(new java.awt.Color(204, 59, 211));
         btnEditar.setColorOver(new java.awt.Color(224, 68, 231));
-        btnEditar.setFont(new java.awt.Font("Roboto", 3, 14)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Roboto", Font.BOLD | Font.ITALIC, 14)); // NOI18N
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditar.setIconTextGap(10);
         btnEditar.setMargin(new java.awt.Insets(2, 14, 2, 14));
