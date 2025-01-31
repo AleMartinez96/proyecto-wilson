@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.1" xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd">
+    <persistence-unit name="gymPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>es.xalpha.gym.logica.entidad.Membresia</class>
+        <class>es.xalpha.gym.logica.entidad.Cliente</class>
+        <class>es.xalpha.gym.logica.entidad.Contacto</class>
+        <class>es.xalpha.gym.logica.entidad.Domicilio</class>
+        <class>es.xalpha.gym.logica.entidad.Factura</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/gym_wilson?serverTimezone=UTC"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.driver"
+                      value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.password" value="root"/>
+            <property
+                    name="jakarta.persistence.schema-generation.database.action"
+                    value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
