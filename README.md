@@ -38,5 +38,5 @@ Este proyecto está bajo la licencia MIT. Para más detalles, consulta el archiv
 
 ---
 
-**Desarrollado por @AleMartinez96**
+**Desarrollado por [@AleMartinez96](https://github.com/AleMartinez96)**
 
