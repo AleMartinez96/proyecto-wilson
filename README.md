@@ -32,10 +32,6 @@ GYM Manager es una aplicación de gestión para gimnasios que permite administra
 - **Maven** (gestor de dependencias y construcción)
 - **JDK 23** (Java Development Kit)
 
-## Licencia
-
-Este proyecto está bajo la licencia MIT. Para más detalles, consulta el archivo `LICENSE`.
-
 ---
 
 **Desarrollado por [@AleMartinez96](https://github.com/AleMartinez96)**
