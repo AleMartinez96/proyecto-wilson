@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
-
 @Entity
 @Table(name = "facturas")
 public class Factura implements Serializable {
