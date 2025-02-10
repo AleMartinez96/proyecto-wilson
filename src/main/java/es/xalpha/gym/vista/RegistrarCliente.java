@@ -198,11 +198,14 @@ public class RegistrarCliente extends JPanel {
         txtBarrio.setText("");
         txtEmail.setText("");
         txtTelefono.setText("");
-        cbxMembresia.setSelectedIndex(0);
         txtMonto.setText("");
         calendarioNac.setDate(null);
         calendarioInicio.setDate(null);
         calendarioFin.setDate(null);
+        System.out.println(cbxMembresia.getSelectedIndex());
+        if (cbxMembresia.getSelectedIndex() > 0) {
+            cbxMembresia.setSelectedIndex(0);
+        }
     }
 
     public void setComboBox(List<String> lista) {

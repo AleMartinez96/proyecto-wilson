@@ -115,11 +115,13 @@ public class EditarDatos extends JPanel {
         txtBarrio.setText("");
         txtEmail.setText("");
         txtTelefono.setText("");
-        cbxMembresia.setSelectedIndex(0);
         txtMonto.setText("");
         calendarioNac.setDate(null);
         calendarioInicio.setDate(null);
         calendarioFin.setDate(null);
+        if (cbxMembresia.getSelectedIndex() > 0) {
+            cbxMembresia.setSelectedIndex(0);
+        }
     }
 
     public JPanel getPanelEdicion() {
