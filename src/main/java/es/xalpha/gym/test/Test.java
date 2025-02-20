@@ -1,11 +1,11 @@
 package es.xalpha.gym.test;
 
-import es.xalpha.gym.vista.Principal;
+import es.xalpha.gym.vista.VentanaPrincipal;
 
 public class Test {
 
     public static void main(String[] ignoredArgs) {
-        Principal principal = new Principal();
+        VentanaPrincipal principal = new VentanaPrincipal();
         principal.setVisible(true);
     }
 }

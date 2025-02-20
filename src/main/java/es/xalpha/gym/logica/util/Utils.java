@@ -1,7 +1,5 @@
 package es.xalpha.gym.logica.util;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -29,7 +27,7 @@ public class Utils {
                 Collectors.joining(" "));
     }
 
-    public static @NotNull String formatoFecha(LocalDate date, String formato) {
+    public static String formatoFecha(LocalDate date, String formato) {
         if (date == null || formato == null || formato.isEmpty()) {
             throw new IllegalArgumentException("Fecha o patrón inválido");
         }
@@ -58,11 +56,16 @@ public class Utils {
 
     public static boolean esEmailValido(String email) {
         Pattern pattern = Pattern.compile(
-                "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)" +
-                "{1,3}$");
+                "^([\\w._%+-]+)@([\\w._]+)\\.([a-zA-Z]{2,4})$");
         Matcher matcher = pattern.matcher(email);
-        return matcher.matches() && email.length() >= 10 &&
-               dominioValido(email);
+        return matcher.matches() && dominioValido(email);
+    }
+
+    public static boolean esNumeroDeTelValido(String telefono) {
+        Pattern pattern = Pattern.compile(
+                "^(\\+\\d{1,3}\\s?)?(\\d{2,3}\\s?)?(\\d{3,4}\\s?)?(\\d{3,4})$");
+        Matcher matcher = pattern.matcher(telefono);
+        return matcher.matches();
     }
 
     private static boolean dominioValido(String email) {

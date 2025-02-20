@@ -16,7 +16,8 @@ import com.itextpdf.layout.properties.TextAlignment;
 import es.xalpha.gym.contoladora.ControladoraLogica;
 import es.xalpha.gym.logica.entidad.Factura;
 import es.xalpha.gym.logica.util.Configuracion;
-import es.xalpha.gym.logica.util.ManejoArchivo;
+import es.xalpha.gym.logica.util.ControladoraLogicaSingleton;
+import es.xalpha.gym.logica.util.ManipularArchivo;
 import es.xalpha.gym.logica.util.Utils;
 
 import javax.swing.*;
@@ -31,23 +32,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
-import static es.xalpha.gym.logica.util.Utils.mensaje;
 import static es.xalpha.gym.vista.VerClientes.*;
 
 public class VerFacturas extends JPanel {
 
-    private final ControladoraLogica controller;
-    private final Principal frame;
     private static List<Factura> facturas = new ArrayList<>();
+    private final VentanaPrincipal principal;
     private static final Map<String, String> FILTRO = Map.of("id factura",
             "idFactura", "nro factura", "nroFactura", "fecha de emision",
             "fechaEmision");
 
-    public VerFacturas(ControladoraLogica controller, Principal frame) {
+    public VerFacturas(VentanaPrincipal principal) {
         initComponents();
-        this.frame = frame;
-        this.controller = controller;
+        this.principal = principal;
         List<String> items = FILTRO.keySet().stream().toList();
         setComboBox(items);
         btnListener();
@@ -75,28 +74,34 @@ public class VerFacturas extends JPanel {
 
     private void aplicarFiltro(JTextField textField) {
         String filtro = textField.getText();
+        ControladoraLogica controller =
+                ControladoraLogicaSingleton.INSTANCIA.getController();
         cargarDatosFactura(controller.filtrarFacturas(filtro));
     }
 
     private void obtenerPDF() {
         if (tabla.getRowCount() == 0) {
-            mensaje("No hay datos disponibles para mostrar.", "Error",
+            Utils.mensaje("No hay datos disponibles para mostrar.", "Error",
                     JOptionPane.ERROR_MESSAGE);
         } else if (tabla.getSelectedRow() != -1) {
+            ControladoraLogica controller =
+                    ControladoraLogicaSingleton.INSTANCIA.getController();
             String valor = String.valueOf(
                     tabla.getValueAt(tabla.getSelectedRow(), 0));
             Long idFactura = Long.parseLong(valor);
             Factura factura = controller.getFactura(idFactura);
             try {
                 crearPDF(factura);
-                mensaje("El archivo PDF se ha generado correctamente.",
+                Utils.mensaje("El archivo PDF se ha generado correctamente.",
                         "PDF generado", JOptionPane.PLAIN_MESSAGE);
             } catch (IOException e) {
-                mensaje("Surgio un error al crear el archivo: " +
-                        e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                Utils.mensaje("Surgio un error al crear el archivo: " +
+                              e.getMessage(), "Error",
+                        JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            mensaje("Debe seleccionar una fila para realizar esta acción.",
+            Utils.mensaje(
+                    "Debe seleccionar una fila para realizar esta acción.",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -111,15 +116,16 @@ public class VerFacturas extends JPanel {
     }
 
     private String obtenerPath() {
-        String path = ManejoArchivo.obtenerPath("", "PDF (*.pdf)", ".pdf");
+        String path = ManipularArchivo.obtenerPath("", "PDF (*.pdf)", ".pdf");
         if (path != null && (path.trim().isEmpty() || path.equals(".pdf"))) {
-            path = ManejoArchivo.pathDefault("nuevo documento pdf", ".pdf");
+            path = ManipularArchivo.pathDefault("nuevo documento pdf", ".pdf");
         }
         return path;
     }
 
     private void darEstilo(Document document, Factura factura) throws IOException {
-        Configuracion config = frame.getVerConfiguracion().getConfiguracion();
+        Configuracion config =
+                principal.getVerConfiguracion().getConfiguracion();
         PdfFont boldFont = PdfFontFactory.createFont(
                 StandardFonts.HELVETICA_BOLD);
         PdfFont regularFont = PdfFontFactory.createFont(
@@ -192,17 +198,36 @@ public class VerFacturas extends JPanel {
         if (valor == null) {
             valor = "";
         }
-
         Text labelText = new Text(label).setFont(regularFont);
-
         Text valueText = new Text(valor).setFont(boldFont);
-
         return new Paragraph().add(labelText).add(valueText).setFontSize(
                 12).setFontColor(ColorConstants.DARK_GRAY).setBorderBottom(
                 new SolidBorder(0.5f)).setPaddingBottom(5).setMarginBottom(10);
     }
 
-    public void cargarDatosFactura(List<Factura> listaFacturas) {
+    public void cargarDatosFacturaEnSegundoPlano() {
+        new SwingWorker<List<Factura>, Void>() {
+
+            @Override
+            protected List<Factura> doInBackground() {
+                ControladoraLogica controller =
+                        ControladoraLogicaSingleton.INSTANCIA.getController();
+                return controller.getListaFacturas();
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    List<Factura> facturas = get();
+                    cargarDatosFactura(facturas);
+                } catch (InterruptedException | ExecutionException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }.execute();
+    }
+
+    private void cargarDatosFactura(List<Factura> listaFacturas) {
         DefaultTableModel modelo = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -232,6 +257,8 @@ public class VerFacturas extends JPanel {
         String seleccion = ((String) Objects.requireNonNull(
                 cbxOrden.getSelectedItem())).toLowerCase();
         facturas = getFacturas();
+        ControladoraLogica controller =
+                ControladoraLogicaSingleton.INSTANCIA.getController();
         if (texto.equalsIgnoreCase("asc") && !seleccion.isEmpty()) {
             facturas = controller.getListaOrdenadaFactura(true,
                     FILTRO.get(seleccion), filtro);
@@ -254,7 +281,6 @@ public class VerFacturas extends JPanel {
         return panelEdicion;
     }
 
-    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -281,8 +307,7 @@ public class VerFacturas extends JPanel {
         btnImprimir.setColor(new Color(0, 0, 0, 0));
         btnImprimir.setColorClick(new java.awt.Color(221, 59, 221));
         btnImprimir.setColorOver(new java.awt.Color(238, 62, 238));
-        btnImprimir.setFont(new java.awt.Font("Roboto", Font.BOLD | Font.ITALIC,
-                14)); // NOI18N
+        btnImprimir.setFont(new java.awt.Font("Roboto", 2, 14)); // NOI18N
         btnImprimir.setHorizontalTextPosition(
                 javax.swing.SwingConstants.CENTER);
         btnImprimir.setIconTextGap(10);
@@ -291,12 +316,11 @@ public class VerFacturas extends JPanel {
         btnImprimir.setMinimumSize(new java.awt.Dimension(50, 50));
         btnImprimir.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jScrollPane1.setFont(
-                new java.awt.Font("Roboto", Font.PLAIN, 12)); // NOI18N
+        jScrollPane1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jScrollPane1.setOpaque(true);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(750, 310));
 
-        tabla.setFont(new java.awt.Font("Roboto", Font.PLAIN, 12)); // NOI18N
+        tabla.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{{}, {}, {}, {}}, new String[]{
 
@@ -306,7 +330,7 @@ public class VerFacturas extends JPanel {
         tabla.setRowMargin(1);
         jScrollPane1.setViewportView(tabla);
 
-        lblOrden.setFont(new java.awt.Font("Roboto", Font.BOLD, 16)); // NOI18N
+        lblOrden.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         lblOrden.setForeground(new java.awt.Color(255, 255, 255));
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
                 "es/xalpha/gym/vista/Bundle"); // NOI18N
@@ -314,10 +338,11 @@ public class VerFacturas extends JPanel {
                 bundle.getString("VerClientes.lblOrden.text")); // NOI18N
         lblOrden.setPreferredSize(new java.awt.Dimension(90, 20));
 
-        cbxOrden.setFont(new java.awt.Font("Roboto", Font.BOLD, 14)); // NOI18N
+        cbxOrden.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         cbxOrden.setForeground(new java.awt.Color(0, 0, 0));
         cbxOrden.setPreferredSize(new java.awt.Dimension(80, 30));
 
+        txtBuscar.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         txtBuscar.setMinimumSize(new java.awt.Dimension(68, 30));
         txtBuscar.setPreferredSize(new java.awt.Dimension(200, 30));
 
@@ -330,6 +355,7 @@ public class VerFacturas extends JPanel {
         btnBuscar.setColor(new Color(0, 0, 0, 0));
         btnBuscar.setColorClick(new java.awt.Color(65, 72, 213));
         btnBuscar.setColorOver(new java.awt.Color(71, 78, 231));
+        btnBuscar.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
         btnBuscar.setPreferredSize(new java.awt.Dimension(40, 40));
 
         btnAsc.setBackground(new Color(0, 0, 0, 0));
@@ -341,6 +367,7 @@ public class VerFacturas extends JPanel {
         btnAsc.setColor(new Color(0, 0, 0, 0));
         btnAsc.setColorClick(new java.awt.Color(65, 72, 213));
         btnAsc.setColorOver(new java.awt.Color(71, 78, 231));
+        btnAsc.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
         btnAsc.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAsc.setMargin(new java.awt.Insets(2, 14, 2, 14));
         btnAsc.setMaximumSize(new java.awt.Dimension(30, 30));
@@ -356,6 +383,7 @@ public class VerFacturas extends JPanel {
         btnDesc.setColor(new Color(0, 0, 0, 0));
         btnDesc.setColorClick(new java.awt.Color(65, 72, 213));
         btnDesc.setColorOver(new java.awt.Color(71, 78, 231));
+        btnDesc.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
         btnDesc.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDesc.setMargin(new java.awt.Insets(2, 14, 2, 14));
         btnDesc.setMaximumSize(new java.awt.Dimension(30, 30));

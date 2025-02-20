@@ -1,7 +1,5 @@
 package es.xalpha.gym.logica.util;
 
-import org.jetbrains.annotations.NotNull;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
@@ -11,14 +9,14 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Properties;
 
-public class ManejoArchivo {
+public class ManipularArchivo {
 
     private String path;
     private static final String PROPERTIES_FILE = "config.properties";
     private final Properties properties;
     private final String PATH_DEFAULT;
 
-    public ManejoArchivo() {
+    public ManipularArchivo() {
         this.properties = new Properties();
         PATH_DEFAULT = pathDefault("config", ".json");
         path = cargarPathDeProperties();
@@ -82,20 +80,27 @@ public class ManejoArchivo {
 
     public static String obtenerPath(String ruta, String tipoArchivo,
                                      String extension) {
-        JFileChooser chooser = new JFileChooser();
         String nuevoPath = "";
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "Archivos " + tipoArchivo, extension);
-        chooser.setDialogTitle("Especificar ubicación para guardar el archivo");
-        chooser.setFileFilter(filter);
-        String texto = ruta != null && !ruta.isEmpty() ? ruta :
-                "nuevo archivo" + extension;
-        chooser.setSelectedFile(new File(texto));
+        JFileChooser chooser = abrirJFileChooser(ruta, tipoArchivo, extension);
         if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
             nuevoPath = chooser.getSelectedFile().getAbsolutePath();
         }
         return !nuevoPath.endsWith(extension) ?
                 nuevoPath + extension : nuevoPath;
+    }
+
+    private static JFileChooser abrirJFileChooser(String ruta,
+                                                  String tipoArchivo,
+                                                  String extension) {
+        String texto = ruta != null && !ruta.isEmpty() ? ruta :
+                "nuevo archivo" + extension;
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "Archivos " + tipoArchivo, extension);
+        chooser.setDialogTitle("Especificar ubicación para guardar el archivo");
+        chooser.setFileFilter(filter);
+        chooser.setSelectedFile(new File(texto));
+        return chooser;
     }
 
     public File getFile() {
@@ -111,7 +116,7 @@ public class ManejoArchivo {
         return ruta.toFile();
     }
 
-    public static @NotNull String pathDefault(String nombre, String extension) {
+    public static String pathDefault(String nombre, String extension) {
         String path;
         String userHome = System.getProperty("user.home");
         String oneDrive = System.getenv("OneDrive");
