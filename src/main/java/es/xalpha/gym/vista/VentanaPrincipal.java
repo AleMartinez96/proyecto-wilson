@@ -57,8 +57,8 @@ public class VentanaPrincipal extends JFrame {
             @Override
             public void windowOpened(WindowEvent e) {
                 crearArchivo();
-                verClientes.cargarDatosClienteEnSegundoPlano();
-                verFacturas.cargarDatosFacturaEnSegundoPlano();
+                verClientes.cargarDatosEnSegundoPlano();
+                verFacturas.cargarDatosEnSegundoPlano();
             }
         });
     }
@@ -77,7 +77,7 @@ public class VentanaPrincipal extends JFrame {
         verConfiguracion = new VerConfiguracion(this);
         registrarCliente = new RegistrarCliente(this);
         verClientes = new VerClientes(this);
-        editarDatos = new EditarDatos(this);
+        editarDatos = new EditarDatos();
         verFacturas = new VerFacturas(this);
         panelRegistro = registrarCliente.getPanelEdicion();
         panelEditarDatos = editarDatos.getPanelEdicion();
@@ -169,7 +169,7 @@ public class VentanaPrincipal extends JFrame {
         });
 
         btnRegistro.addActionListener(_ -> {
-            registrarCliente.setComboBox(getListaMembresia());
+            registrarCliente.setComboBoxMembresia(getListaMembresia());
             verPanel(panelRegistro, paneles);
         });
 
@@ -238,11 +238,11 @@ public class VentanaPrincipal extends JFrame {
     }
 
     public void cargarDatosCliente() {
-        verClientes.cargarDatosClienteEnSegundoPlano();
+        verClientes.cargarDatosEnSegundoPlano();
     }
 
     public void cargarDatosFacturas() {
-        verFacturas.cargarDatosFacturaEnSegundoPlano();
+        verFacturas.cargarDatosEnSegundoPlano();
     }
 
     private void cargarJSON(File file) {
@@ -449,7 +449,7 @@ public class VentanaPrincipal extends JFrame {
         btnInicio.setColor(new Color(0, 0, 0, 0));
         btnInicio.setColorClick(new java.awt.Color(228, 205, 59));
         btnInicio.setColorOver(new java.awt.Color(244, 219, 64));
-        btnInicio.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnInicio.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         btnInicio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnInicio.setIconTextGap(10);
         btnInicio.setMargin(new java.awt.Insets(2, 14, 2, 14));
@@ -468,7 +468,7 @@ public class VentanaPrincipal extends JFrame {
         btnRegistro.setColor(new Color(0, 0, 0, 0));
         btnRegistro.setColorClick(new java.awt.Color(10, 193, 18));
         btnRegistro.setColorOver(new java.awt.Color(15, 225, 24));
-        btnRegistro.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnRegistro.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         btnRegistro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnRegistro.setIconTextGap(10);
         btnRegistro.setMargin(new java.awt.Insets(2, 14, 2, 14));
@@ -487,7 +487,7 @@ public class VentanaPrincipal extends JFrame {
         btnClientes.setColor(new Color(0, 0, 0, 0));
         btnClientes.setColorClick(new java.awt.Color(183, 51, 216));
         btnClientes.setColorOver(new java.awt.Color(207, 60, 243));
-        btnClientes.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnClientes.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         btnClientes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnClientes.setIconTextGap(10);
         btnClientes.setMargin(new java.awt.Insets(2, 14, 2, 14));
@@ -506,7 +506,7 @@ public class VentanaPrincipal extends JFrame {
         btnFacturas.setColor(new Color(0, 0, 0, 0));
         btnFacturas.setColorClick(new java.awt.Color(232, 163, 42));
         btnFacturas.setColorOver(new java.awt.Color(249, 175, 45));
-        btnFacturas.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnFacturas.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         btnFacturas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnFacturas.setIconTextGap(10);
         btnFacturas.setMargin(new java.awt.Insets(2, 14, 2, 14));
@@ -525,7 +525,7 @@ public class VentanaPrincipal extends JFrame {
         btnConfig.setColor(new Color(0, 0, 0, 0));
         btnConfig.setColorClick(new java.awt.Color(60, 72, 219));
         btnConfig.setColorOver(new java.awt.Color(70, 83, 246));
-        btnConfig.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnConfig.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         btnConfig.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnConfig.setIconTextGap(10);
         btnConfig.setMargin(new java.awt.Insets(2, 14, 2, 14));

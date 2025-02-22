@@ -1,6 +1,5 @@
 package es.xalpha.gym.logica.util;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -9,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class Utils {
+public class UtilLogica {
 
     private static final Set<String> DOMINIOS_GLOBALES = Set.of("gmail.com",
             "hotmail.com", "hotmail.es", "outlook.com", "outlook.es",
@@ -38,15 +37,6 @@ public class Utils {
     public static LocalDate obtenerLocalDate(Date date) {
         return date == null ? LocalDate.now() : date.toInstant().atZone(
                 ZoneId.systemDefault()).toLocalDate();
-    }
-
-    public static void mensaje(String mensaje, String titulo, int tipoMensaje) {
-        JOptionPane.showMessageDialog(null, mensaje, titulo, tipoMensaje);
-    }
-
-    public static Integer opcion(String mensaje, String titulo,
-                                 int tipoOpcion) {
-        return JOptionPane.showConfirmDialog(null, mensaje, titulo, tipoOpcion);
     }
 
     public static Date obtenerDate(LocalDate localDate) {

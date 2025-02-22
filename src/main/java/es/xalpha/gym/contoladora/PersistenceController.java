@@ -22,7 +22,7 @@ public class PersistenceController {
     }
 
     public Cliente getCliente(Long id) {
-        return clienteJpaController.obtenerClientePor(id);
+        return clienteJpaController.obtenerClientePorID(id);
     }
 
     public void editarCliente(Cliente cliente) throws NonexistentEntityException {
@@ -34,17 +34,13 @@ public class PersistenceController {
     }
 
     public List<Cliente> getListaOrdenadaCliente(boolean orden,
-                                                 String ordenarPor,
-                                                 String filtro) {
-        return clienteJpaController.clientesOrdenadosPor(orden, ordenarPor,
-                filtro);
+                                                 String ordenarPor) {
+        return clienteJpaController.clientesOrdenadosPor(orden, ordenarPor);
     }
 
     public List<Factura> getListaOrdenadaFactura(boolean orden,
-                                                 String ordenarPor,
-                                                 String filtro) {
-        return facturaJpaController.facturasOrdenadosPor(orden, ordenarPor,
-                filtro);
+                                                 String ordenarPor) {
+        return facturaJpaController.facturasOrdenadosPor(orden, ordenarPor);
     }
 
     public List<Factura> getListaFacturas() {
@@ -60,6 +56,6 @@ public class PersistenceController {
     }
 
     public Factura getFactura(Long idFactura) {
-        return facturaJpaController.obtenerFacturaPor(idFactura);
+        return facturaJpaController.obtenerFacturaPorID(idFactura);
     }
 }

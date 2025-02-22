@@ -3,7 +3,8 @@ package es.xalpha.gym.vista;
 import es.xalpha.gym.contoladora.ControladoraLogica;
 import es.xalpha.gym.logica.entidad.Cliente;
 import es.xalpha.gym.logica.util.ControladoraLogicaSingleton;
-import es.xalpha.gym.logica.util.Utils;
+import es.xalpha.gym.logica.util.UtilGUI;
+import es.xalpha.gym.logica.util.UtilLogica;
 import es.xalpha.gym.persistencia.exceptions.NonexistentEntityException;
 
 import javax.swing.*;
@@ -133,7 +134,7 @@ public class VerClientes extends JPanel {
 
     private void editarDatos() {
         if (tabla.getRowCount() == 0) {
-            Utils.mensaje("No hay datos disponibles para mostrar.", "Error",
+            UtilGUI.mensaje("No hay datos disponibles para mostrar.", "Error",
                     JOptionPane.ERROR_MESSAGE);
         } else if (tabla.getSelectedRow() != -1) {
             String valor = String.valueOf(
@@ -144,7 +145,7 @@ public class VerClientes extends JPanel {
             principal.verPanel(editarDatos.getPanelEdicion(),
                     principal.getPaneles());
         } else {
-            Utils.mensaje(
+            UtilGUI.mensaje(
                     "Debe seleccionar una fila para realizar esta acción.",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -152,44 +153,46 @@ public class VerClientes extends JPanel {
 
     private void eliminarCliente() {
         if (tabla.getRowCount() == 0) {
-            Utils.mensaje("No hay datos disponibles para mostrar.", "Error",
+            UtilGUI.mensaje("No hay datos disponibles para mostrar.", "Error",
                     JOptionPane.ERROR_MESSAGE);
-        } else if (tabla.getSelectedRow() == -1) {
-            Utils.mensaje(
+        } else if (tabla.getSelectedRow() != -1) {
+            boolean opcion =
+                    UtilGUI.opcion("¿Esta seguro de realizar esta accion?",
+                            "Eliminacion", JOptionPane.YES_NO_OPTION) ==
+                    JOptionPane.YES_OPTION;
+            if (opcion) {
+                eliminar();
+            } else {
+                UtilGUI.mensaje("La operación fue cancelada.", "Cancelado",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            UtilGUI.mensaje(
                     "Debe seleccionar una fila para realizar esta acción.",
                     "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            eliminar();
         }
     }
 
     private void eliminar() {
-        boolean opcion = Utils.opcion("¿Esta seguro de realizar esta accion?",
-                "Eliminacion", JOptionPane.YES_NO_OPTION) == 0;
-        if (opcion) {
-            String valor = String.valueOf(
-                    tabla.getValueAt(tabla.getSelectedRow(), 0));
-            Long idCliente = Long.parseLong(valor);
-            try {
-                ControladoraLogica controller =
-                        ControladoraLogicaSingleton.INSTANCIA.getController();
-                controller.eliminarCliente(idCliente);
-                Utils.mensaje("Los datos fueron eliminados con exito", "Exito",
-                        JOptionPane.INFORMATION_MESSAGE);
-                principal.cargarDatosCliente();
-            } catch (NonexistentEntityException e) {
-                Utils.mensaje(
-                        "Ocurrió un error al intentar eliminar los datos. " +
-                        "Inténtelo nuevamente.", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            Utils.mensaje("La operación fue cancelada.", "Cancelado",
+        String valor = String.valueOf(
+                tabla.getValueAt(tabla.getSelectedRow(), 0));
+        Long idCliente = Long.parseLong(valor);
+        try {
+            ControladoraLogica controller =
+                    ControladoraLogicaSingleton.INSTANCIA.getController();
+            controller.eliminarCliente(idCliente);
+            UtilGUI.mensaje("Los datos fueron eliminados con exito", "Exito",
                     JOptionPane.INFORMATION_MESSAGE);
+            principal.cargarDatosCliente();
+        } catch (NonexistentEntityException e) {
+            UtilGUI.mensaje(
+                    "Ocurrió un error al intentar eliminar los datos. " +
+                    "Inténtelo nuevamente.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    public void cargarDatosClienteEnSegundoPlano() {
+    public void cargarDatosEnSegundoPlano() {
         new SwingWorker<List<Cliente>, Void>() {
 
             @Override
@@ -226,10 +229,10 @@ public class VerClientes extends JPanel {
             Object[] objects = {cliente.getIdCliente(), cliente.getApellido(),
                     cliente.getNombre(), cliente.getContacto().getTelefono(),
                     cliente.getContacto().getEmail(),
-                    cliente.getMembresia().getTipo(),
-                    Utils.formatoFecha(cliente.getMembresia().getFechaInicio(),
-                            "dd-MM-yyyy"),
-                    Utils.formatoFecha(cliente.getMembresia().getFechaFin(),
+                    cliente.getMembresia().getTipo(), UtilLogica.formatoFecha(
+                    cliente.getMembresia().getFechaInicio(), "dd-MM-yyyy"),
+                    UtilLogica.formatoFecha(
+                            cliente.getMembresia().getFechaFin(),
                             "dd-MM-yyyy")};
             modelo.addRow(objects);
         });
@@ -243,25 +246,28 @@ public class VerClientes extends JPanel {
     private void ordenarLista(ActionEvent e) {
         JButton button = (JButton) e.getSource();
         String texto = button.getToolTipText();
-        String filtro = filtroValido(txtBuscar);
         String seleccion = ((String) Objects.requireNonNull(
                 cbxOrden.getSelectedItem())).toLowerCase();
         clientes = getListaClientes();
-        ControladoraLogica controller =
-                ControladoraLogicaSingleton.INSTANCIA.getController();
-        if (texto.equalsIgnoreCase("asc") && !seleccion.isEmpty()) {
-            clientes = controller.getListaOrdenadaCliente(true,
-                    FILTRO.get(seleccion), filtro);
-        } else if (texto.equalsIgnoreCase("desc") && !seleccion.isEmpty()) {
-            clientes = controller.getListaOrdenadaCliente(false,
-                    FILTRO.get(seleccion), filtro);
-        }
-        cargarDatosCliente(clientes);
+        cargarDatosCliente(getListaOrdenada(texto, seleccion));
     }
 
-    public static String filtroValido(JTextField textField) {
-        return !textField.getText().equals("buscar") &&
-               !textField.getText().isEmpty() ? textField.getText() : "";
+    private List<Cliente> getListaOrdenada(String texto, String seleccion) {
+        ControladoraLogica controller =
+                ControladoraLogicaSingleton.INSTANCIA.getController();
+        if (entradaValida(texto, seleccion) && texto.equalsIgnoreCase("asc")) {
+            clientes = controller.getListaOrdenadaCliente(true,
+                    FILTRO.get(seleccion));
+        } else if (entradaValida(texto, seleccion)) {
+            clientes = controller.getListaOrdenadaCliente(false,
+                    FILTRO.get(seleccion));
+        }
+        return clientes;
+    }
+
+    private boolean entradaValida(String texto, String seleccion) {
+        return (texto != null && !texto.isEmpty()) &&
+               (seleccion != null && !seleccion.isEmpty());
     }
 
     private List<Cliente> getListaClientes() {
@@ -302,7 +308,7 @@ public class VerClientes extends JPanel {
         btnEliminar.setColor(new Color(0, 0, 0, 0));
         btnEliminar.setColorClick(new java.awt.Color(220, 51, 51));
         btnEliminar.setColorOver(new java.awt.Color(240, 56, 56));
-        btnEliminar.setFont(new java.awt.Font("Roboto", 2, 14)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Roboto", Font.ITALIC, 14)); // NOI18N
         btnEliminar.setHorizontalTextPosition(
                 javax.swing.SwingConstants.CENTER);
         btnEliminar.setIconTextGap(10);
@@ -312,12 +318,12 @@ public class VerClientes extends JPanel {
         btnEliminar.setName("btnEliminar"); // NOI18N
         btnEliminar.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        jScrollPane1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jScrollPane1.setFont(new java.awt.Font("Roboto", Font.PLAIN, 12)); // NOI18N
         jScrollPane1.setName("jScrollPane1"); // NOI18N
         jScrollPane1.setOpaque(true);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(750, 310));
 
-        tabla.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        tabla.setFont(new java.awt.Font("Roboto", Font.PLAIN, 12)); // NOI18N
         tabla.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{{}, {}, {}, {}}, new String[]{
 
@@ -328,7 +334,7 @@ public class VerClientes extends JPanel {
         tabla.setRowMargin(1);
         jScrollPane1.setViewportView(tabla);
 
-        lblOrden.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
+        lblOrden.setFont(new java.awt.Font("Roboto", Font.PLAIN, 16)); // NOI18N
         lblOrden.setForeground(new java.awt.Color(255, 255, 255));
         java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
                 "es/xalpha/gym/vista/Bundle"); // NOI18N
@@ -337,13 +343,13 @@ public class VerClientes extends JPanel {
         lblOrden.setName("lblOrden"); // NOI18N
         lblOrden.setPreferredSize(new java.awt.Dimension(90, 20));
 
-        cbxOrden.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        cbxOrden.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         cbxOrden.setForeground(new java.awt.Color(0, 0, 0));
         cbxOrden.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cbxOrden.setName("cbxOrden"); // NOI18N
         cbxOrden.setPreferredSize(new java.awt.Dimension(130, 30));
 
-        txtBuscar.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        txtBuscar.setFont(new java.awt.Font("Roboto", Font.PLAIN, 12)); // NOI18N
         txtBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtBuscar.setMinimumSize(new java.awt.Dimension(68, 30));
         txtBuscar.setName("txtBuscar"); // NOI18N
@@ -359,7 +365,7 @@ public class VerClientes extends JPanel {
         btnBuscar.setColor(new Color(0, 0, 0, 0));
         btnBuscar.setColorClick(new java.awt.Color(65, 72, 213));
         btnBuscar.setColorOver(new java.awt.Color(71, 78, 231));
-        btnBuscar.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
+        btnBuscar.setFont(new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
         btnBuscar.setName("btnBuscar"); // NOI18N
         btnBuscar.setPreferredSize(new java.awt.Dimension(40, 40));
 
@@ -372,7 +378,7 @@ public class VerClientes extends JPanel {
         btnAsc.setColor(new Color(0, 0, 0, 0));
         btnAsc.setColorClick(new java.awt.Color(65, 72, 213));
         btnAsc.setColorOver(new java.awt.Color(71, 78, 231));
-        btnAsc.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
+        btnAsc.setFont(new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
         btnAsc.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnAsc.setMargin(new java.awt.Insets(2, 14, 2, 14));
         btnAsc.setMaximumSize(new java.awt.Dimension(30, 30));
@@ -390,7 +396,7 @@ public class VerClientes extends JPanel {
         btnDesc.setColor(new Color(0, 0, 0, 0));
         btnDesc.setColorClick(new java.awt.Color(65, 72, 213));
         btnDesc.setColorOver(new java.awt.Color(71, 78, 231));
-        btnDesc.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
+        btnDesc.setFont(new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
         btnDesc.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDesc.setMargin(new java.awt.Insets(2, 14, 2, 14));
         btnDesc.setMaximumSize(new java.awt.Dimension(30, 30));
@@ -407,7 +413,7 @@ public class VerClientes extends JPanel {
         btnEditar.setColor(new Color(0, 0, 0, 0));
         btnEditar.setColorClick(new java.awt.Color(218, 148, 39));
         btnEditar.setColorOver(new java.awt.Color(236, 160, 44));
-        btnEditar.setFont(new java.awt.Font("Roboto", 2, 14)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Roboto", Font.ITALIC, 14)); // NOI18N
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditar.setIconTextGap(10);
         btnEditar.setMargin(new java.awt.Insets(2, 14, 2, 14));

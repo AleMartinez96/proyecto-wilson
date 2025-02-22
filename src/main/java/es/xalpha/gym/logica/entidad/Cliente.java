@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
-import static es.xalpha.gym.logica.util.Utils.capitalizarNombre;
+import static es.xalpha.gym.logica.util.UtilLogica.capitalizarNombre;
 
 @Entity
 @Table(name = "clientes")

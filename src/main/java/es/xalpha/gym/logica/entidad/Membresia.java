@@ -1,6 +1,6 @@
 package es.xalpha.gym.logica.entidad;
 
-import es.xalpha.gym.logica.util.Utils;
+import es.xalpha.gym.logica.util.UtilLogica;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -59,7 +59,7 @@ public class Membresia implements Serializable {
     }
 
     public void setTipo(String tipo) {
-        this.tipo = Utils.capitalizarNombre(tipo);
+        this.tipo = UtilLogica.capitalizarNombre(tipo);
     }
 
     public Double getMonto() {

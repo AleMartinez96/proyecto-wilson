@@ -1,34 +1,39 @@
 package es.xalpha.gym.vista;
 
-import com.toedter.calendar.JDateChooser;
 import es.xalpha.gym.contoladora.ControladoraLogica;
 import es.xalpha.gym.logica.util.ControladoraLogicaSingleton;
-import es.xalpha.gym.logica.util.Utils;
+import es.xalpha.gym.logica.util.UtilLogica;
+import es.xalpha.gym.logica.util.UtilGUI;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
-import java.util.*;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegistrarCliente extends JPanel {
+public class RegistrarCliente extends PanelBase {
 
-    private final VentanaPrincipal principal;
+    private VentanaPrincipal principal;
 
     public RegistrarCliente(VentanaPrincipal principal) {
         VentanaPrincipal.estilo();
         initComponents();
         this.principal = principal;
-        setCalendario(calendarioNac);
-        setCalendario(calendarioInicio);
-        setCalendario(calendarioFin);
+        UtilGUI.setCalendario(calendarioNac);
+        UtilGUI.setCalendario(calendarioInicio);
+        UtilGUI.setCalendario(calendarioFin);
         btnListener();
         txtListener();
+    }
+
+    public RegistrarCliente() {
+    }
+
+    public VentanaPrincipal getPrincipal() {
+        return principal;
     }
 
     private void btnListener() {
@@ -61,89 +66,50 @@ public class RegistrarCliente extends JPanel {
     }
 
     private void guardarDatos() {
-        List<JComponent> components = List.of(cbxMembresia, txtApellido,
-                txtNombre, txtCalle, txtBarrio, calendarioNac, calendarioFin,
-                calendarioInicio, txtMonto);
+        List<JComponent> components = List.of(txtApellido, txtNombre, txtCalle,
+                txtBarrio, calendarioNac, calendarioFin, calendarioInicio,
+                txtMonto);
         if (datosValidos(components, txtEmail.getText(),
                 txtTelefono.getText())) {
-            ControladoraLogica controller =
-                    ControladoraLogicaSingleton.INSTANCIA.getController();
-            String nombre = txtNombre.getText();
-            String nombreLocal = principal.getNombreLocal();
-            String apellido = txtApellido.getText();
-            String calle = txtCalle.getText();
-            String barrio = txtBarrio.getText();
-            String email = txtEmail.getText();
-            String tel = txtTelefono.getText();
-            String tipo = (String) cbxMembresia.getSelectedItem();
-            Double monto = Double.parseDouble(txtMonto.getText());
-            LocalDate nacimiento = Utils.obtenerLocalDate(
-                    calendarioNac.getDate());
-            LocalDate fechaInicio = Utils.obtenerLocalDate(
-                    calendarioInicio.getDate());
-            LocalDate fechaFin = Utils.obtenerLocalDate(
-                    calendarioFin.getDate());
-
-            controller.crearCliente(nombre, apellido, calle, barrio, email, tel,
-                    tipo, monto, nacimiento, fechaInicio, fechaFin,
-                    nombreLocal);
-            Utils.mensaje("Los datos del cliente fueron guardados con éxito.",
+            crearCliente();
+            UtilGUI.mensaje("Los datos del cliente fueron guardados con éxito.",
                     "Exito", JOptionPane.INFORMATION_MESSAGE);
             limpiar();
         } else {
-            Utils.mensaje(
+            resaltarComponentesVaciosOIncorrectos(components, txtEmail,
+                    txtTelefono);
+            UtilGUI.mensaje(
                     "Algunos campos no están completos. Por favor, revise " +
                     "antes de proceder.", "Cuidado",
                     JOptionPane.WARNING_MESSAGE);
+            restaurarColorComponentes(components, txtEmail, txtTelefono);
         }
     }
 
-    public static boolean datosValidos(List<JComponent> components,
-                                       String email, String numTelefono) {
-        return sonComponentesVacios(components) && Utils.esEmailValido(email) &&
-               Utils.esNumeroDeTelValido(numTelefono);
+    private void crearCliente() {
+        ControladoraLogica controller =
+                ControladoraLogicaSingleton.INSTANCIA.getController();
+        String nombre = txtNombre.getText();
+        String nombreLocal = principal.getNombreLocal();
+        String apellido = txtApellido.getText();
+        String calle = txtCalle.getText();
+        String barrio = txtBarrio.getText();
+        String email = txtEmail.getText();
+        String tel = txtTelefono.getText();
+        String tipo = (String) cbxMembresia.getSelectedItem();
+        Double monto = Double.parseDouble(txtMonto.getText());
+        LocalDate nacimiento = UtilLogica.obtenerLocalDate(
+                calendarioNac.getDate());
+        LocalDate fechaInicio = UtilLogica.obtenerLocalDate(
+                calendarioInicio.getDate());
+        LocalDate fechaFin = UtilLogica.obtenerLocalDate(
+                calendarioFin.getDate());
+
+        controller.crearCliente(nombre, apellido, calle, barrio, email, tel,
+                tipo, monto, nacimiento, fechaInicio, fechaFin, nombreLocal);
     }
 
-    private static boolean sonComponentesVacios(List<JComponent> components) {
-        List<JComponent> componentesVacios = components.stream().filter(
-                component -> esCalendarioVacio(component) ||
-                             esComboBoxVacio(component) ||
-                             esTextoVacio(component)).toList();
-        return componentesVacios.isEmpty();
-    }
-
-    private static boolean esTextoVacio(JComponent component) {
-        return JTextField.class.equals(component.getClass()) &&
-               ((JTextField) component).getText().isEmpty();
-    }
-
-    private static boolean esCalendarioVacio(JComponent component) {
-        return JDateChooser.class.equals(component.getClass()) &&
-               ((JDateChooser) component).getDate() == null;
-    }
-
-    private static boolean esComboBoxVacio(JComponent component) {
-        return JComboBox.class.equals(component.getClass()) &&
-               Objects.equals(((JComboBox<?>) component).getSelectedItem(), "");
-    }
-
-    public static void setCalendario(JDateChooser calendario) {
-        calendario.setIcon(new ImageIcon(Objects.requireNonNull(
-                RegistrarCliente.class.getResource("/image/calendario.png"))));
-        calendario.getDateEditor().getUiComponent().setEnabled(false);
-        calendario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        calendario.getCalendarButton().setBackground(new Color(0, 0, 0, 0));
-        calendario.getCalendarButton().setToolTipText("calendario");
-        calendario.getCalendarButton().setBorder(null);
-        JTextField txtCalendario =
-                (JTextField) calendario.getDateEditor().getUiComponent();
-        txtCalendario.setDisabledTextColor(Color.black);
-        Locale locale = Locale.of("es", "ES");
-        calendario.setLocale(locale);
-        calendario.setDateFormatString("dd-MM-yyyy");
-    }
-
-    private void limpiar() {
+    public void limpiar() {
         txtNombre.setText("");
         txtApellido.setText("");
         txtCalle.setText("");
@@ -159,7 +125,7 @@ public class RegistrarCliente extends JPanel {
         }
     }
 
-    public void setComboBox(List<String> lista) {
+    public void setComboBoxMembresia(List<String> lista) {
         cbxMembresia.removeAllItems();
         lista.stream().map(String::toLowerCase).forEach(cbxMembresia::addItem);
     }
@@ -211,61 +177,61 @@ public class RegistrarCliente extends JPanel {
         panelDatosPersonales.setOpaque(false);
         panelDatosPersonales.setPreferredSize(new java.awt.Dimension(290, 300));
 
-        lblApellido.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblApellido.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblApellido.setForeground(new java.awt.Color(255, 255, 255));
         lblApellido.setText("Apellido");
         lblApellido.setPreferredSize(new java.awt.Dimension(54, 20));
 
-        txtApellido.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtApellido.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtApellido.setForeground(new java.awt.Color(0, 0, 0));
         txtApellido.setMinimumSize(new java.awt.Dimension(68, 30));
         txtApellido.setPreferredSize(new java.awt.Dimension(190, 30));
 
-        lblNombre.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setText("Nombre");
         lblNombre.setPreferredSize(new java.awt.Dimension(52, 20));
 
-        txtNombre.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(0, 0, 0));
         txtNombre.setPreferredSize(new java.awt.Dimension(190, 30));
 
-        lblFecha.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblFecha.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(255, 255, 255));
         lblFecha.setText("Fec. Nac.");
         lblFecha.setPreferredSize(new java.awt.Dimension(60, 20));
 
         lblDatosPersonales.setFont(
-                new java.awt.Font("Roboto", 1, 24)); // NOI18N
+                new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
         lblDatosPersonales.setForeground(new java.awt.Color(255, 255, 255));
         lblDatosPersonales.setText("Datos Personales");
         lblDatosPersonales.setPreferredSize(new java.awt.Dimension(190, 30));
 
-        txtBarrio.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtBarrio.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtBarrio.setForeground(new java.awt.Color(0, 0, 0));
         txtBarrio.setPreferredSize(new java.awt.Dimension(200, 30));
 
-        lblBarrio.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblBarrio.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblBarrio.setForeground(new java.awt.Color(255, 255, 255));
         lblBarrio.setText("Barrio");
         lblBarrio.setPreferredSize(new java.awt.Dimension(40, 20));
 
-        lblCalle.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblCalle.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblCalle.setForeground(new java.awt.Color(255, 255, 255));
         lblCalle.setText("Calle");
         lblCalle.setPreferredSize(new java.awt.Dimension(34, 20));
 
-        txtCalle.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCalle.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtCalle.setForeground(new java.awt.Color(0, 0, 0));
         txtCalle.setPreferredSize(new java.awt.Dimension(200, 30));
 
-        lblDomicilio.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        lblDomicilio.setFont(new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
         lblDomicilio.setForeground(new java.awt.Color(255, 255, 255));
         lblDomicilio.setText("Domicilio");
         lblDomicilio.setPreferredSize(new java.awt.Dimension(102, 30));
 
         calendarioNac.setForeground(new java.awt.Color(0, 0, 0));
-        calendarioNac.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        calendarioNac.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         calendarioNac.setOpaque(false);
         calendarioNac.setPreferredSize(new java.awt.Dimension(190, 30));
 
@@ -420,71 +386,71 @@ public class RegistrarCliente extends JPanel {
         panelDomicilio.setOpaque(false);
 
         lblDatosPersonales1.setFont(
-                new java.awt.Font("Roboto", 1, 24)); // NOI18N
+                new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
         lblDatosPersonales1.setForeground(new java.awt.Color(255, 255, 255));
         lblDatosPersonales1.setText("Membresia");
         lblDatosPersonales1.setPreferredSize(new java.awt.Dimension(122, 30));
 
-        lblMembresia.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblMembresia.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblMembresia.setForeground(new java.awt.Color(255, 255, 255));
         lblMembresia.setText("Tipo");
         lblMembresia.setPreferredSize(new java.awt.Dimension(30, 20));
 
-        cbxMembresia.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        cbxMembresia.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         cbxMembresia.setForeground(new java.awt.Color(0, 0, 0));
         cbxMembresia.setCursor(
                 new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cbxMembresia.setPreferredSize(new java.awt.Dimension(150, 30));
 
-        lblMonto.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblMonto.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblMonto.setForeground(new java.awt.Color(255, 255, 255));
         lblMonto.setText("Monto");
         lblMonto.setPreferredSize(new java.awt.Dimension(42, 20));
 
-        txtMonto.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtMonto.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtMonto.setForeground(new java.awt.Color(0, 0, 0));
         txtMonto.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        lblMembresia1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblMembresia1.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblMembresia1.setForeground(new java.awt.Color(255, 255, 255));
         lblMembresia1.setText("Inicia el");
         lblMembresia1.setPreferredSize(new java.awt.Dimension(50, 20));
 
         calendarioInicio.setForeground(new java.awt.Color(0, 0, 0));
-        calendarioInicio.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        calendarioInicio.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         calendarioInicio.setOpaque(false);
         calendarioInicio.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        lblMembresia2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblMembresia2.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblMembresia2.setForeground(new java.awt.Color(255, 255, 255));
         lblMembresia2.setText("Finaliza el");
         lblMembresia2.setPreferredSize(new java.awt.Dimension(66, 20));
 
         calendarioFin.setForeground(new java.awt.Color(0, 0, 0));
-        calendarioFin.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        calendarioFin.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         calendarioFin.setOpaque(false);
         calendarioFin.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        lblContacto.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        lblContacto.setFont(new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
         lblContacto.setForeground(new java.awt.Color(255, 255, 255));
         lblContacto.setText("Contacto");
         lblContacto.setPreferredSize(new java.awt.Dimension(100, 30));
 
-        lblEmail.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(255, 255, 255));
         lblEmail.setText("Email");
         lblEmail.setPreferredSize(new java.awt.Dimension(36, 20));
 
-        txtEmail.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(0, 0, 0));
         txtEmail.setPreferredSize(new java.awt.Dimension(220, 30));
 
-        lblTelefono.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        lblTelefono.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
         lblTelefono.setText("Telefono");
         lblTelefono.setPreferredSize(new java.awt.Dimension(58, 20));
 
-        txtTelefono.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(0, 0, 0));
         txtTelefono.setPreferredSize(new java.awt.Dimension(220, 30));
 
@@ -671,7 +637,7 @@ public class RegistrarCliente extends JPanel {
         btnGuardar.setColor(new Color(0, 0, 0, 0));
         btnGuardar.setColorClick(new java.awt.Color(10, 193, 18));
         btnGuardar.setColorOver(new java.awt.Color(15, 225, 24));
-        btnGuardar.setFont(new java.awt.Font("Roboto", 2, 14)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Roboto", Font.ITALIC, 14)); // NOI18N
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setIconTextGap(10);
         btnGuardar.setMargin(new java.awt.Insets(2, 14, 2, 14));
@@ -688,7 +654,7 @@ public class RegistrarCliente extends JPanel {
         btnLimpiar.setColor(new Color(0, 0, 0, 0));
         btnLimpiar.setColorClick(new java.awt.Color(177, 34, 219));
         btnLimpiar.setColorOver(new java.awt.Color(196, 49, 240));
-        btnLimpiar.setFont(new java.awt.Font("Roboto", 2, 14)); // NOI18N
+        btnLimpiar.setFont(new java.awt.Font("Roboto", Font.ITALIC, 14)); // NOI18N
         btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLimpiar.setIconTextGap(10);
         btnLimpiar.setMargin(new java.awt.Insets(2, 14, 2, 14));

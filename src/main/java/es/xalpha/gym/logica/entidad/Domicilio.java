@@ -1,7 +1,7 @@
 package es.xalpha.gym.logica.entidad;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import es.xalpha.gym.logica.util.Utils;
+import es.xalpha.gym.logica.util.UtilLogica;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -51,7 +51,7 @@ public class Domicilio implements Serializable {
     }
 
     public void setCalle(String calle) {
-        this.calle = Utils.capitalizarNombre(calle);
+        this.calle = UtilLogica.capitalizarNombre(calle);
     }
 
     public String getBarrio() {
@@ -59,7 +59,7 @@ public class Domicilio implements Serializable {
     }
 
     public void setBarrio(String barrio) {
-        this.barrio = Utils.capitalizarNombre(barrio);
+        this.barrio = UtilLogica.capitalizarNombre(barrio);
     }
 
     public Cliente getCliente() {

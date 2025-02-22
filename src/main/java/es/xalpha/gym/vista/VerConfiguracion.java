@@ -4,7 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import es.xalpha.gym.logica.entidad.Contacto;
 import es.xalpha.gym.logica.entidad.Domicilio;
 import es.xalpha.gym.logica.util.Configuracion;
-import es.xalpha.gym.logica.util.Utils;
+import es.xalpha.gym.logica.util.UtilGUI;
+import es.xalpha.gym.logica.util.UtilLogica;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,15 +16,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VerConfiguracion extends JPanel {
+public class VerConfiguracion extends PanelBase {
 
     private static Configuracion configuracion = new Configuracion();
-    private final List<String> listaMembresia = new ArrayList<>();
+    private final List<String> listaMembresia = new ArrayList<>(
+            List.of("Sin membresia"));
     private final VentanaPrincipal principal;
 
     public VerConfiguracion(VentanaPrincipal principal) {
         initComponents();
         this.principal = principal;
+        setComboBoxMembresia();
         lblImagen.setSize(250, 250);
         setLabel(lblImagen, "src/image/wilson.png");
         btnListener();
@@ -47,40 +50,80 @@ public class VerConfiguracion extends JPanel {
     }
 
     private void guardarArchivoJSON() {
-        String email = txtEmail.getText();
-        String telefono = txtTelefono.getText();
-        String nombre = txtNombre.getText();
-        String direccion = txtCalle.getText();
-        if (Utils.esEmailValido(email) && Utils.esNumeroDeTelValido(telefono)) {
-            Contacto contacto = configuracion.getContacto();
-            Domicilio domicilio = configuracion.getDomicilio();
-
-            domicilio.setCalle(direccion);
-            contacto.setEmail(email);
-            contacto.setTelefono(telefono);
-            configuracion.setNombre(nombre);
-            configuracion.setContacto(contacto);
-            configuracion.setDomicilio(domicilio);
-            configuracion.setMembresias(listaMembresia);
-
-            guardarJSON(configuracion);
-            cargarArchivoJSON(principal.getArchivo().getFile());
+        List<JComponent> components = List.of(txtNombre, txtCalle);
+        if (datosValidos(components, txtEmail.getText(),
+                txtTelefono.getText())) {
+            guardarConfiguracionJSON();
         } else {
-            Utils.mensaje(
+            UtilGUI.mensaje(
                     "Algunos campos no están completos. Por favor, revise " +
                     "antes de proceder.", "Cuidado",
                     JOptionPane.WARNING_MESSAGE);
         }
     }
 
-    private void guardarJSON(Configuracion configuracion) {
+    @Override
+    public boolean datosValidos(List<JComponent> components, String email,
+                                String numTelefono) {
+        List<JTextField> lista = components.stream().filter(
+                component -> component instanceof JTextField).map(
+                component -> (JTextField) component).toList();
+        return UtilGUI.sonTextFieldsVacios(lista) &&
+               UtilLogica.esEmailValido(email) &&
+               UtilLogica.esNumeroDeTelValido(numTelefono);
+    }
+
+    @Override
+    public void resaltarComponentesVaciosOIncorrectos(List<JComponent> components, JTextField email, JTextField telefono) {
+        SwingUtilities.invokeLater(() -> {
+            components.forEach(component -> component.setBackground(Color.red));
+            resaltarSiEsInvalido(email, UtilLogica::esEmailValido, Color.red);
+            resaltarSiEsInvalido(telefono, UtilLogica::esNumeroDeTelValido,
+                    Color.red);
+        });
+    }
+
+    @Override
+    public void restaurarColorComponentes(List<JComponent> components,
+                                          JTextField email,
+                                          JTextField telefono) {
+        SwingUtilities.invokeLater(() -> {
+            components.forEach(
+                    component -> component.setBackground(Color.white));
+            email.setBackground(Color.white);
+            telefono.setBackground(Color.white);
+        });
+    }
+
+    private void guardarConfiguracionJSON() {
+        String email = txtEmail.getText();
+        String telefono = txtTelefono.getText();
+        String nombre = txtNombre.getText();
+        String direccion = txtCalle.getText();
+
+        Contacto contacto = configuracion.getContacto();
+        Domicilio domicilio = configuracion.getDomicilio();
+
+        domicilio.setCalle(direccion);
+        contacto.setEmail(email);
+        contacto.setTelefono(telefono);
+        configuracion.setNombre(nombre);
+        configuracion.setContacto(contacto);
+        configuracion.setDomicilio(domicilio);
+        configuracion.setMembresias(listaMembresia);
+
+        guardarArchivoJSON(configuracion);
+        cargarArchivoJSON(principal.getArchivo().getFile());
+    }
+
+    private void guardarArchivoJSON(Configuracion configuracion) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             mapper.writeValue(principal.getArchivo().getFile(), configuracion);
-            Utils.mensaje("Los datos se han guardado correctamente.",
+            UtilGUI.mensaje("Los datos se han guardado correctamente.",
                     "Actualizacion exitosa", JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
-            Utils.mensaje(
+            UtilGUI.mensaje(
                     "Error al guardar la configuración: " + e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -97,11 +140,11 @@ public class VerConfiguracion extends JPanel {
                 txtTelefono.setText(configuracion.getContacto().getTelefono());
                 listaMembresia.clear();
                 listaMembresia.addAll(configuracion.getMembresias());
-                setComboBox();
+                setComboBoxMembresia();
             }
         } catch (IOException e) {
-            Utils.mensaje("No se encontró el archivo de configuración: " +
-                          e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            UtilGUI.mensaje("No se encontró el archivo de configuración: " +
+                            e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -110,7 +153,7 @@ public class VerConfiguracion extends JPanel {
             verificarUbicacion();
             cargarArchivoJSON(principal.getArchivo().getFile());
         } catch (IOException e) {
-            Utils.mensaje("No se pudo cambiar la ubicación del archivo.",
+            UtilGUI.mensaje("No se pudo cambiar la ubicación del archivo.",
                     "Error al actualizar", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -123,10 +166,10 @@ public class VerConfiguracion extends JPanel {
         String[] pathAnterior = anterior.split("\\\\");
         String[] pathNuevo = nuevo.split("\\\\");
         if (pathAnterior.length != pathNuevo.length) {
-            Utils.mensaje("El archivo ha sido movido con éxito.",
+            UtilGUI.mensaje("El archivo ha sido movido con éxito.",
                     "Ubicación actualizada", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            Utils.mensaje("La ubicación del archivo no ha cambiado.",
+            UtilGUI.mensaje("La ubicación del archivo no ha cambiado.",
                     "Sin cambios", JOptionPane.INFORMATION_MESSAGE);
         }
     }
@@ -154,7 +197,7 @@ public class VerConfiguracion extends JPanel {
         if (membresia != null && !membresia.isEmpty()) {
             agregarMembresia(membresia);
         } else {
-            Utils.mensaje("No se ha proporcionado una membresía válida.",
+            UtilGUI.mensaje("No se ha proporcionado una membresía válida.",
                     "Error", JOptionPane.WARNING_MESSAGE);
         }
     }
@@ -163,30 +206,32 @@ public class VerConfiguracion extends JPanel {
         if (membresia != null && !listaMembresia.contains(membresia)) {
             listaMembresia.add(membresia.toLowerCase());
             cbxMembresia.addItem(membresia.toLowerCase());
-            Utils.mensaje("La nueva membresía ha sido agregada correctamente.",
+            UtilGUI.mensaje(
+                    "La nueva membresía ha sido agregada correctamente.",
                     "Membresía agregada", JOptionPane.PLAIN_MESSAGE);
         } else {
-            Utils.mensaje("La membresía ingresada ya existe en la lista.",
+            UtilGUI.mensaje("La membresía ingresada ya existe en la lista.",
                     "Membresía existente", JOptionPane.WARNING_MESSAGE);
         }
     }
 
     private void eliminarMembresia() {
         String membresia = (String) cbxMembresia.getSelectedItem();
-        if (listaMembresia.isEmpty()) {
-            Utils.mensaje("No hay membresías para eliminar.", "Lista vacia",
-                    JOptionPane.WARNING_MESSAGE);
+        if (listaMembresia.getFirst().equalsIgnoreCase(membresia)) {
+            UtilGUI.mensaje(
+                    "No es posible eliminar la membresia predeterminada.",
+                    "Error", JOptionPane.WARNING_MESSAGE);
         } else if (listaMembresia.remove(membresia)) {
             cbxMembresia.removeItem(membresia);
-            Utils.mensaje("La membresía se ha eliminado correctamente.",
+            UtilGUI.mensaje("La membresía se ha eliminado correctamente.",
                     "Membresía eliminada", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            Utils.mensaje("La membresía seleccionada no existe en la lista.",
+            UtilGUI.mensaje("La membresía seleccionada no existe en la lista.",
                     "Membresía no encontrada", JOptionPane.WARNING_MESSAGE);
         }
     }
 
-    private void setComboBox() {
+    private void setComboBoxMembresia() {
         cbxMembresia.removeAllItems();
         listaMembresia.stream().map(String::toLowerCase).forEach(
                 cbxMembresia::addItem);
@@ -243,7 +288,7 @@ public class VerConfiguracion extends JPanel {
         btnGuardar.setColor(new Color(0, 0, 0, 0));
         btnGuardar.setColorClick(new java.awt.Color(10, 193, 18));
         btnGuardar.setColorOver(new java.awt.Color(15, 225, 24));
-        btnGuardar.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setIconTextGap(2);
         btnGuardar.setMargin(new java.awt.Insets(2, 14, 2, 14));
@@ -260,7 +305,7 @@ public class VerConfiguracion extends JPanel {
         btnReubicar.setColor(new Color(0, 0, 0, 0));
         btnReubicar.setColorClick(new java.awt.Color(139, 49, 210));
         btnReubicar.setColorOver(new java.awt.Color(160, 58, 240));
-        btnReubicar.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
+        btnReubicar.setFont(new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
         btnReubicar.setHorizontalTextPosition(
                 javax.swing.SwingConstants.CENTER);
         btnReubicar.setIconTextGap(2);
@@ -271,43 +316,43 @@ public class VerConfiguracion extends JPanel {
 
         panelFormulario.setOpaque(false);
 
-        lblNombre.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Roboto", Font.PLAIN, 18)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setText("Nombre del local");
 
-        txtNombre.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtNombre.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(0, 0, 0));
         txtNombre.setMinimumSize(new java.awt.Dimension(70, 30));
         txtNombre.setPreferredSize(new java.awt.Dimension(70, 30));
 
-        lblCalle.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        lblCalle.setFont(new java.awt.Font("Roboto", Font.PLAIN, 18)); // NOI18N
         lblCalle.setForeground(new java.awt.Color(255, 255, 255));
         lblCalle.setText("Direccion");
 
-        txtCalle.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCalle.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtCalle.setForeground(new java.awt.Color(0, 0, 0));
         txtCalle.setMinimumSize(new java.awt.Dimension(70, 30));
         txtCalle.setPreferredSize(new java.awt.Dimension(70, 30));
 
-        lblEmail.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Roboto", Font.PLAIN, 18)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(255, 255, 255));
         lblEmail.setText("Email");
 
-        txtEmail.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtEmail.setForeground(new java.awt.Color(0, 0, 0));
         txtEmail.setMinimumSize(new java.awt.Dimension(70, 30));
         txtEmail.setPreferredSize(new java.awt.Dimension(70, 30));
 
-        lblTelefono.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        lblTelefono.setFont(new java.awt.Font("Roboto", Font.PLAIN, 18)); // NOI18N
         lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
         lblTelefono.setText("Telefono");
 
-        txtTelefono.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtTelefono.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(0, 0, 0));
         txtTelefono.setMinimumSize(new java.awt.Dimension(70, 30));
         txtTelefono.setPreferredSize(new java.awt.Dimension(70, 30));
 
-        cbxMembresia.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        cbxMembresia.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         cbxMembresia.setMinimumSize(new java.awt.Dimension(80, 30));
         cbxMembresia.setPreferredSize(new java.awt.Dimension(80, 30));
 
@@ -319,7 +364,7 @@ public class VerConfiguracion extends JPanel {
         btnMas.setColor(new Color(0, 0, 0, 0));
         btnMas.setColorClick(new java.awt.Color(10, 193, 18));
         btnMas.setColorOver(new java.awt.Color(15, 225, 24));
-        btnMas.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
+        btnMas.setFont(new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
         btnMas.setPreferredSize(new java.awt.Dimension(40, 40));
 
         btnMenos.setBackground(new Color(0, 0, 0, 0));
@@ -330,10 +375,10 @@ public class VerConfiguracion extends JPanel {
         btnMenos.setColor(new Color(0, 0, 0, 0));
         btnMenos.setColorClick(new java.awt.Color(220, 51, 51));
         btnMenos.setColorOver(new java.awt.Color(240, 56, 56));
-        btnMenos.setFont(new java.awt.Font("Roboto", 2, 12)); // NOI18N
+        btnMenos.setFont(new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
         btnMenos.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        lblMembresia.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        lblMembresia.setFont(new java.awt.Font("Roboto", Font.PLAIN, 18)); // NOI18N
         lblMembresia.setForeground(new java.awt.Color(255, 255, 255));
         lblMembresia.setText("Membresia");
 

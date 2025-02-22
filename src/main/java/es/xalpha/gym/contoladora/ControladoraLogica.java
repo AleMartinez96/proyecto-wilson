@@ -97,15 +97,13 @@ public class ControladoraLogica {
     }
 
     public List<Cliente> getListaOrdenadaCliente(boolean orden,
-                                                 String ordenarPor,
-                                                 String filtro) {
-        return controlPersis.getListaOrdenadaCliente(orden, ordenarPor, filtro);
+                                                 String ordenarPor) {
+        return controlPersis.getListaOrdenadaCliente(orden, ordenarPor);
     }
 
     public List<Factura> getListaOrdenadaFactura(boolean orden,
-                                                 String ordenarPor,
-                                                 String filtro) {
-        return controlPersis.getListaOrdenadaFactura(orden, ordenarPor, filtro);
+                                                 String ordenarPor) {
+        return controlPersis.getListaOrdenadaFactura(orden, ordenarPor);
     }
 
     public List<Factura> getListaFacturas() {

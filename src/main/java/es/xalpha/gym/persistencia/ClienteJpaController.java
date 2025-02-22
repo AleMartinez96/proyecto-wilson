@@ -43,114 +43,69 @@ public class ClienteJpaController implements Serializable {
             em.getTransaction().commit();
         } catch (Exception ex) {
             em.getTransaction().rollback();
-            String error = "El cliente con id " + cliente.getIdCliente() +
-                           " ya no existe.";
-            String msg = mensajeError(ex, cliente, error);
-            if (!msg.contains("ya no existe")) {
-                throw ex;
-            }
-            Long id = cliente.getIdCliente();
-            if (obtenerClientePor(id) == null) {
-                throw new NonexistentEntityException(msg);
-            }
+            throw new NonexistentEntityException("El cliente ya no existe.");
         } finally {
             em.close();
         }
     }
 
-    private String mensajeError(Exception ex, Object obj, String mensaje) {
-        return ex == null || obj == null ? "" : (
-                ex.getLocalizedMessage() == null ||
-                ex.getLocalizedMessage().isEmpty()) ? mensaje :
-                ex.getLocalizedMessage();
-    }
-
     public void destroy(Long id) throws NonexistentEntityException {
-        try (EntityManager em = getEntityManager()) {
+        EntityManager em = getEntityManager();
+        try {
             em.getTransaction().begin();
-            try {
-                Cliente cliente = em.getReference(Cliente.class, id);
-                em.remove(cliente);
-                em.getTransaction().commit();
-            } catch (EntityNotFoundException e) {
-                em.getTransaction().rollback();
-                String error = "El cliente con id " + id + " ya no existe.";
-                throw new NonexistentEntityException(
-                        mensajeError(e, id, error));
-            }
+            Cliente cliente = em.getReference(Cliente.class, id);
+            em.remove(cliente);
+            em.getTransaction().commit();
+        } catch (EntityNotFoundException e) {
+            em.getTransaction().rollback();
+            throw new NonexistentEntityException(
+                    "El cliente con id " + id + " ya no existe.");
+        } finally {
+            em.close();
         }
     }
 
     public List<Cliente> findClienteEntities() {
-        return findClienteEntities(true, -1, -1);
-    }
-
-    private List<Cliente> findClienteEntities(boolean all, int maxResults,
-                                              int firstResult) {
         try (EntityManager em = getEntityManager()) {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<Cliente> cq = cb.createQuery(Cliente.class);
             Root<Cliente> root = cq.from(Cliente.class);
             cq.select(root);
             TypedQuery<Cliente> tq = em.createQuery(cq);
-            if (!all) {
-                tq.setMaxResults(maxResults);
-                tq.setFirstResult(firstResult);
-            }
             return tq.getResultList();
         }
     }
 
     public List<Cliente> filtrarClientes(String filtro) {
-        try (EntityManager em = getEntityManager()) {
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<Cliente> cq = cb.createQuery(Cliente.class);
-            Root<Cliente> root = cq.from(Cliente.class);
-            if ((filtro != null && !filtro.isEmpty())) {
-                cq.where(cb.and(generarPredicado(cb, root, filtro)));
-            }
-            cq.select(root);
-            TypedQuery<Cliente> tq = em.createQuery(cq);
-            return tq.getResultList();
-        }
+        return findClienteEntities().stream().filter(
+                cliente -> filtrarPor(cliente, filtro)).toList();
     }
 
-    private Predicate[] generarPredicado(CriteriaBuilder cb,
-                                         Root<Cliente> root, String filtro) {
-        String[] partes = filtro.split("\\s+");
-        Predicate[] predicates = new Predicate[partes.length];
-        for (int i = 0; i < partes.length; i++) {
-            String palabra = "%" + partes[i] + "%";
-            predicates[i] = cb.or(cb.like(root.get("nombre"), palabra),
-                    cb.like(root.get("apellido"), palabra));
+    private boolean filtrarPor(Cliente cliente, String filtro) {
+        if (filtro == null || filtro.isEmpty()) {
+            return false;
         }
-        return predicates;
+        filtro = filtro.toLowerCase();
+        return cliente.getNombre().toLowerCase().contains(filtro) ||
+               cliente.getApellido().toLowerCase().contains(filtro);
     }
 
     public List<Cliente> clientesOrdenadosPor(boolean ordenar,
-                                              String ordenarPor,
-                                              String filtro) {
+                                              String ordenarPor) {
         try (EntityManager em = getEntityManager()) {
             CriteriaBuilder cb = em.getCriteriaBuilder();
             CriteriaQuery<Cliente> cq = cb.createQuery(Cliente.class);
             Root<Cliente> root = cq.from(Cliente.class);
-            if (filtro != null && !filtro.isEmpty()) {
-                cq.where(cb.and(generarPredicado(cb, root, filtro)));
-            }
-            Order order;
-            if (ordenar) {
-                order = cb.asc(root.get(ordenarPor));
-            } else {
-                order = cb.desc(root.get(ordenarPor));
-            }
+            Order order = ordenar ? cb.asc(root.get(ordenarPor)) : cb.desc(
+                    root.get(ordenarPor));
             cq.orderBy(order);
             return em.createQuery(cq).getResultList();
         }
     }
 
-    public Cliente obtenerClientePor(Object key) {
+    public Cliente obtenerClientePorID(Long id) {
         try (EntityManager em = getEntityManager()) {
-            return em.find(Cliente.class, key);
+            return em.find(Cliente.class, id);
         }
     }
 }

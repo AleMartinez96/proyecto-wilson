@@ -31,7 +31,7 @@ public class Configuracion {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = Utils.capitalizarNombre(nombre);
+        this.nombre = UtilLogica.capitalizarNombre(nombre);
     }
 
     public Domicilio getDomicilio() {

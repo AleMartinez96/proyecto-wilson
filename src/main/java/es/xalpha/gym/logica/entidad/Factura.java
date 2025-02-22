@@ -1,6 +1,6 @@
 package es.xalpha.gym.logica.entidad;
 
-import es.xalpha.gym.logica.util.Utils;
+import es.xalpha.gym.logica.util.UtilLogica;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcType;
 import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
@@ -62,7 +62,7 @@ public class Factura implements Serializable {
     }
 
     public void setNomLocal(String nomLocal) {
-        this.nomLocal = Utils.capitalizarNombre(nomLocal);
+        this.nomLocal = UtilLogica.capitalizarNombre(nomLocal);
     }
 
     public UUID getNroFactura() {
