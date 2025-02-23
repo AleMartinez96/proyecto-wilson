@@ -121,4 +121,8 @@ public class ControladoraLogica {
     public Factura getFactura(Long idFactura) {
         return controlPersis.getFactura(idFactura);
     }
+
+    public void actualizarNombreDeLocalEnFactura(String nombre) {
+        controlPersis.actualizarNombreDeLocalEnFactura(nombre);
+    }
 }

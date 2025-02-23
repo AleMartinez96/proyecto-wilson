@@ -33,6 +33,23 @@ public class FacturaJpaController implements Serializable {
         }
     }
 
+    public void actualizarNombreDeLocalEnFactura(String nombre) {
+        EntityManager em = getEntityManager();
+        try {
+            em.getTransaction().begin();
+            List<Factura> lista = findFacturaEntities();
+            lista.forEach(factura -> {
+                factura.setNomLocal(nombre);
+                em.merge(factura);
+            });
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+    }
+
     public List<Factura> facturasOrdenadosPor(boolean ordenar,
                                               String ordenarPor) {
         try (EntityManager em = getEntityManager()) {
@@ -47,7 +64,9 @@ public class FacturaJpaController implements Serializable {
     }
 
     public List<Factura> filtrarFacturas(String filtro) {
-        return findFacturaEntities().stream().filter(
+        return filtro == null ||
+               filtro.isEmpty() ? findFacturaEntities() :
+                findFacturaEntities().stream().filter(
                 factura -> filtrarPor(factura, filtro)).toList();
     }
 

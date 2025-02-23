@@ -1,5 +1,7 @@
 package es.xalpha.gym.logica.util;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
@@ -11,18 +13,17 @@ import java.util.Properties;
 
 public class ManipularArchivo {
 
-    private String path;
+    private static String path;
     private static final String PROPERTIES_FILE = "config.properties";
-    private final Properties properties;
-    private final String PATH_DEFAULT;
+    private static final Properties properties = new Properties();
+    private static String PATH_DEFAULT;
 
     public ManipularArchivo() {
-        this.properties = new Properties();
         PATH_DEFAULT = pathDefault("config", ".json");
         path = cargarPathDeProperties();
     }
 
-    public String cargarPathDeProperties() {
+    public static String cargarPathDeProperties() {
         File archivo = new File(PROPERTIES_FILE);
         try {
             if (!archivo.exists() && archivo.createNewFile()) {
@@ -36,7 +37,7 @@ public class ManipularArchivo {
         return leerProperties();
     }
 
-    private String leerProperties() {
+    private static String leerProperties() {
         try (FileInputStream inputStream = new FileInputStream(
                 PROPERTIES_FILE)) {
             properties.load(inputStream);
@@ -46,11 +47,11 @@ public class ManipularArchivo {
         }
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public static void setPath(String path) {
+        ManipularArchivo.path = path;
     }
 
-    public void guardarPathEnProperties() {
+    private static void guardarPathEnProperties() {
         properties.setProperty("path", path);
         try (FileOutputStream outputStream = new FileOutputStream(
                 PROPERTIES_FILE)) {
@@ -60,12 +61,8 @@ public class ManipularArchivo {
         }
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void actualizarArchivo(String path, String tipoArchivo,
-                                  String extension) throws IOException {
+    private static void actualizarArchivo(String path, String tipoArchivo,
+                                          String extension) throws IOException {
         if (path == null || path.isEmpty()) {
             path = PATH_DEFAULT;
         }
@@ -78,6 +75,19 @@ public class ManipularArchivo {
         }
     }
 
+    public static void guardarArchivo(Configuracion configuracion) {
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            mapper.writeValue(ManipularArchivo.getFile(), configuracion);
+            UtilGUI.mensaje("Los datos se han guardado correctamente.",
+                    "Actualizacion exitosa", JOptionPane.INFORMATION_MESSAGE);
+        } catch (IOException e) {
+            UtilGUI.mensaje(
+                    "Error al guardar la configuración: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     public static String obtenerPath(String ruta, String tipoArchivo,
                                      String extension) {
         String nuevoPath = "";
@@ -87,6 +97,21 @@ public class ManipularArchivo {
         }
         return !nuevoPath.endsWith(extension) ?
                 nuevoPath + extension : nuevoPath;
+    }
+
+    public static void verificarUbicacionDelArchivo() throws IOException {
+        String anterior = path;
+        actualizarArchivo(anterior, "Json (*.json)", ".json");
+        String nuevo = path;
+        String[] pathAnterior = anterior.split("\\\\");
+        String[] pathNuevo = nuevo.split("\\\\");
+        if (pathAnterior.length != pathNuevo.length) {
+            UtilGUI.mensaje("El archivo ha sido movido con éxito.",
+                    "Ubicación actualizada", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            UtilGUI.mensaje("La ubicación del archivo no ha cambiado.",
+                    "Sin cambios", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     private static JFileChooser abrirJFileChooser(String ruta,
@@ -103,7 +128,7 @@ public class ManipularArchivo {
         return chooser;
     }
 
-    public File getFile() {
+    public static File getFile() {
         Path ruta = Paths.get(path);
         return ruta.toFile();
     }

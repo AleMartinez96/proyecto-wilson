@@ -53,7 +53,7 @@ public class UtilLogica {
 
     public static boolean esNumeroDeTelValido(String telefono) {
         Pattern pattern = Pattern.compile(
-                "^(\\+\\d{1,3}\\s?)?(\\d{2,3}\\s?)?(\\d{3,4}\\s?)?(\\d{3,4})$");
+                "^(\\+\\d{1,3}\\s?)?(\\d{9,10})$");
         Matcher matcher = pattern.matcher(telefono);
         return matcher.matches();
     }

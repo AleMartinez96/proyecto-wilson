@@ -58,4 +58,8 @@ public class PersistenceController {
     public Factura getFactura(Long idFactura) {
         return facturaJpaController.obtenerFacturaPorID(idFactura);
     }
+
+    public void actualizarNombreDeLocalEnFactura(String nombre) {
+        facturaJpaController.actualizarNombreDeLocalEnFactura(nombre);
+    }
 }

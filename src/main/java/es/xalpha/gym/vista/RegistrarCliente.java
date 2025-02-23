@@ -1,6 +1,7 @@
 package es.xalpha.gym.vista;
 
 import es.xalpha.gym.contoladora.ControladoraLogica;
+import es.xalpha.gym.logica.util.ControladorDeValidacionYComponentes;
 import es.xalpha.gym.logica.util.ControladoraLogicaSingleton;
 import es.xalpha.gym.logica.util.UtilLogica;
 import es.xalpha.gym.logica.util.UtilGUI;
@@ -14,9 +15,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegistrarCliente extends PanelBase {
+public class RegistrarCliente extends PanelBase implements ControladorDeValidacionYComponentes {
 
-    private VentanaPrincipal principal;
+    private final VentanaPrincipal principal;
 
     public RegistrarCliente(VentanaPrincipal principal) {
         VentanaPrincipal.estilo();
@@ -29,16 +30,9 @@ public class RegistrarCliente extends PanelBase {
         txtListener();
     }
 
-    public RegistrarCliente() {
-    }
-
-    public VentanaPrincipal getPrincipal() {
-        return principal;
-    }
-
     private void btnListener() {
-        btnGuardar.addActionListener(_ -> guardarDatos());
-        btnLimpiar.addActionListener(_ -> limpiar());
+        btnGuardar.addActionListener(_ -> guardarDatosDelCliente());
+        btnLimpiar.addActionListener(_ -> limpiarComponentes());
     }
 
     private void txtListener() {
@@ -65,7 +59,7 @@ public class RegistrarCliente extends PanelBase {
         });
     }
 
-    private void guardarDatos() {
+    private void guardarDatosDelCliente() {
         List<JComponent> components = List.of(txtApellido, txtNombre, txtCalle,
                 txtBarrio, calendarioNac, calendarioFin, calendarioInicio,
                 txtMonto);
@@ -74,7 +68,7 @@ public class RegistrarCliente extends PanelBase {
             crearCliente();
             UtilGUI.mensaje("Los datos del cliente fueron guardados con éxito.",
                     "Exito", JOptionPane.INFORMATION_MESSAGE);
-            limpiar();
+            limpiarComponentes();
         } else {
             resaltarComponentesVaciosOIncorrectos(components, txtEmail,
                     txtTelefono);
@@ -86,11 +80,48 @@ public class RegistrarCliente extends PanelBase {
         }
     }
 
+    @Override
+    public boolean datosValidos(List<JComponent> components, String email,
+                                String telefono) {
+        return UtilGUI.sonComponentesVacios(components) &&
+               UtilLogica.esEmailValido(email) &&
+               UtilLogica.esNumeroDeTelValido(telefono);
+    }
+
+    @Override
+    public void restaurarColorComponentes(List<JComponent> components,
+                                          JTextField email,
+                                          JTextField telefono) {
+        SwingUtilities.invokeLater(() -> {
+            components.forEach(component -> cambiarColorComponente(component,
+                    Color.white));
+            email.setBackground(Color.white);
+            telefono.setBackground(Color.white);
+        });
+    }
+
+    @Override
+    public void resaltarComponentesVaciosOIncorrectos(List<JComponent> components, JTextField email, JTextField telefono) {
+        SwingUtilities.invokeLater(() -> {
+            obtenerListaComponentesVacios(components).forEach(
+                    component -> cambiarColorComponente(component, Color.red));
+            resaltarSiEsInvalido(email, UtilLogica::esEmailValido, Color.red);
+            resaltarSiEsInvalido(telefono, UtilLogica::esNumeroDeTelValido,
+                    Color.red);
+        });
+    }
+
+    private List<JComponent> obtenerListaComponentesVacios(List<JComponent> components) {
+        return components.stream().filter(
+                component -> UtilGUI.esCalendarioVacio(component) ||
+                             UtilGUI.esTextoVacio(component)).toList();
+    }
+
     private void crearCliente() {
         ControladoraLogica controller =
                 ControladoraLogicaSingleton.INSTANCIA.getController();
         String nombre = txtNombre.getText();
-        String nombreLocal = principal.getNombreLocal();
+        String nombreLocal = principal.getVerConfiguracion().getNombreLocal();
         String apellido = txtApellido.getText();
         String calle = txtCalle.getText();
         String barrio = txtBarrio.getText();
@@ -109,7 +140,7 @@ public class RegistrarCliente extends PanelBase {
                 tipo, monto, nacimiento, fechaInicio, fechaFin, nombreLocal);
     }
 
-    public void limpiar() {
+    private void limpiarComponentes() {
         txtNombre.setText("");
         txtApellido.setText("");
         txtCalle.setText("");
@@ -177,22 +208,26 @@ public class RegistrarCliente extends PanelBase {
         panelDatosPersonales.setOpaque(false);
         panelDatosPersonales.setPreferredSize(new java.awt.Dimension(290, 300));
 
-        lblApellido.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        lblApellido.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblApellido.setForeground(new java.awt.Color(255, 255, 255));
         lblApellido.setText("Apellido");
         lblApellido.setPreferredSize(new java.awt.Dimension(54, 20));
 
-        txtApellido.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        txtApellido.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtApellido.setForeground(new java.awt.Color(0, 0, 0));
         txtApellido.setMinimumSize(new java.awt.Dimension(68, 30));
         txtApellido.setPreferredSize(new java.awt.Dimension(190, 30));
 
-        lblNombre.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        lblNombre.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setText("Nombre");
         lblNombre.setPreferredSize(new java.awt.Dimension(52, 20));
 
-        txtNombre.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        txtNombre.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(0, 0, 0));
         txtNombre.setPreferredSize(new java.awt.Dimension(190, 30));
 
@@ -207,11 +242,13 @@ public class RegistrarCliente extends PanelBase {
         lblDatosPersonales.setText("Datos Personales");
         lblDatosPersonales.setPreferredSize(new java.awt.Dimension(190, 30));
 
-        txtBarrio.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        txtBarrio.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtBarrio.setForeground(new java.awt.Color(0, 0, 0));
         txtBarrio.setPreferredSize(new java.awt.Dimension(200, 30));
 
-        lblBarrio.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        lblBarrio.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblBarrio.setForeground(new java.awt.Color(255, 255, 255));
         lblBarrio.setText("Barrio");
         lblBarrio.setPreferredSize(new java.awt.Dimension(40, 20));
@@ -225,13 +262,15 @@ public class RegistrarCliente extends PanelBase {
         txtCalle.setForeground(new java.awt.Color(0, 0, 0));
         txtCalle.setPreferredSize(new java.awt.Dimension(200, 30));
 
-        lblDomicilio.setFont(new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
+        lblDomicilio.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
         lblDomicilio.setForeground(new java.awt.Color(255, 255, 255));
         lblDomicilio.setText("Domicilio");
         lblDomicilio.setPreferredSize(new java.awt.Dimension(102, 30));
 
         calendarioNac.setForeground(new java.awt.Color(0, 0, 0));
-        calendarioNac.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        calendarioNac.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         calendarioNac.setOpaque(false);
         calendarioNac.setPreferredSize(new java.awt.Dimension(190, 30));
 
@@ -391,12 +430,14 @@ public class RegistrarCliente extends PanelBase {
         lblDatosPersonales1.setText("Membresia");
         lblDatosPersonales1.setPreferredSize(new java.awt.Dimension(122, 30));
 
-        lblMembresia.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        lblMembresia.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblMembresia.setForeground(new java.awt.Color(255, 255, 255));
         lblMembresia.setText("Tipo");
         lblMembresia.setPreferredSize(new java.awt.Dimension(30, 20));
 
-        cbxMembresia.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        cbxMembresia.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         cbxMembresia.setForeground(new java.awt.Color(0, 0, 0));
         cbxMembresia.setCursor(
                 new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -411,27 +452,32 @@ public class RegistrarCliente extends PanelBase {
         txtMonto.setForeground(new java.awt.Color(0, 0, 0));
         txtMonto.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        lblMembresia1.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        lblMembresia1.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblMembresia1.setForeground(new java.awt.Color(255, 255, 255));
         lblMembresia1.setText("Inicia el");
         lblMembresia1.setPreferredSize(new java.awt.Dimension(50, 20));
 
         calendarioInicio.setForeground(new java.awt.Color(0, 0, 0));
-        calendarioInicio.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        calendarioInicio.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         calendarioInicio.setOpaque(false);
         calendarioInicio.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        lblMembresia2.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        lblMembresia2.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblMembresia2.setForeground(new java.awt.Color(255, 255, 255));
         lblMembresia2.setText("Finaliza el");
         lblMembresia2.setPreferredSize(new java.awt.Dimension(66, 20));
 
         calendarioFin.setForeground(new java.awt.Color(0, 0, 0));
-        calendarioFin.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        calendarioFin.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         calendarioFin.setOpaque(false);
         calendarioFin.setPreferredSize(new java.awt.Dimension(170, 30));
 
-        lblContacto.setFont(new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
+        lblContacto.setFont(
+                new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
         lblContacto.setForeground(new java.awt.Color(255, 255, 255));
         lblContacto.setText("Contacto");
         lblContacto.setPreferredSize(new java.awt.Dimension(100, 30));
@@ -445,12 +491,14 @@ public class RegistrarCliente extends PanelBase {
         txtEmail.setForeground(new java.awt.Color(0, 0, 0));
         txtEmail.setPreferredSize(new java.awt.Dimension(220, 30));
 
-        lblTelefono.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        lblTelefono.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
         lblTelefono.setText("Telefono");
         lblTelefono.setPreferredSize(new java.awt.Dimension(58, 20));
 
-        txtTelefono.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        txtTelefono.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(0, 0, 0));
         txtTelefono.setPreferredSize(new java.awt.Dimension(220, 30));
 
@@ -637,7 +685,8 @@ public class RegistrarCliente extends PanelBase {
         btnGuardar.setColor(new Color(0, 0, 0, 0));
         btnGuardar.setColorClick(new java.awt.Color(10, 193, 18));
         btnGuardar.setColorOver(new java.awt.Color(15, 225, 24));
-        btnGuardar.setFont(new java.awt.Font("Roboto", Font.ITALIC, 14)); // NOI18N
+        btnGuardar.setFont(
+                new java.awt.Font("Roboto", Font.ITALIC, 14)); // NOI18N
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setIconTextGap(10);
         btnGuardar.setMargin(new java.awt.Insets(2, 14, 2, 14));
@@ -654,7 +703,8 @@ public class RegistrarCliente extends PanelBase {
         btnLimpiar.setColor(new Color(0, 0, 0, 0));
         btnLimpiar.setColorClick(new java.awt.Color(177, 34, 219));
         btnLimpiar.setColorOver(new java.awt.Color(196, 49, 240));
-        btnLimpiar.setFont(new java.awt.Font("Roboto", Font.ITALIC, 14)); // NOI18N
+        btnLimpiar.setFont(
+                new java.awt.Font("Roboto", Font.ITALIC, 14)); // NOI18N
         btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLimpiar.setIconTextGap(10);
         btnLimpiar.setMargin(new java.awt.Insets(2, 14, 2, 14));

@@ -318,9 +318,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\Home.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="es/xalpha/gym/vista/Bundle.properties" key="Principal.btnInicio.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Inicio"/>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new Color(0, 0, 0, 0)" type="code"/>
                 </Property>
@@ -361,9 +359,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\registrar.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="es/xalpha/gym/vista/Bundle.properties" key="Principal.btnRegistro.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Registrar"/>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new Color(0, 0, 0, 0)" type="code"/>
                 </Property>
@@ -404,9 +400,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\ver.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="es/xalpha/gym/vista/Bundle.properties" key="Principal.btnClientes.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Clientes"/>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new Color(0, 0, 0, 0)" type="code"/>
                 </Property>
@@ -447,9 +441,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\factura.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="es/xalpha/gym/vista/Bundle.properties" key="Principal.btnFacturas.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Facturas"/>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new Color(0, 0, 0, 0)" type="code"/>
                 </Property>
@@ -490,9 +482,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="2" name="D:\Ale\Mis Cursos\Curso Java\Netbeans\Proyecto Wilson Gimnasio\src\icon\configuracion.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-                  <ResourceString bundle="es/xalpha/gym/vista/Bundle.properties" key="Principal.btnConfig.text" replaceFormat="java.util.ResourceBundle.getBundle(&quot;{bundleNameSlashes}&quot;).getString(&quot;{key}&quot;)"/>
-                </Property>
+                <Property name="text" type="java.lang.String" value="Configuracion"/>
                 <Property name="color" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new Color(0, 0, 0, 0)" type="code"/>
                 </Property>

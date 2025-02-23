@@ -77,7 +77,9 @@ public class ClienteJpaController implements Serializable {
     }
 
     public List<Cliente> filtrarClientes(String filtro) {
-        return findClienteEntities().stream().filter(
+        return filtro == null ||
+               filtro.isEmpty() ? findClienteEntities() :
+                findClienteEntities().stream().filter(
                 cliente -> filtrarPor(cliente, filtro)).toList();
     }
 

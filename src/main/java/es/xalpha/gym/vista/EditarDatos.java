@@ -2,8 +2,10 @@ package es.xalpha.gym.vista;
 
 import es.xalpha.gym.contoladora.ControladoraLogica;
 import es.xalpha.gym.logica.entidad.Cliente;
+import es.xalpha.gym.logica.util.ControladorDeValidacionYComponentes;
 import es.xalpha.gym.logica.util.ControladoraLogicaSingleton;
 import es.xalpha.gym.logica.util.UtilGUI;
+import es.xalpha.gym.logica.util.UtilLogica;
 import es.xalpha.gym.persistencia.exceptions.NonexistentEntityException;
 
 import javax.swing.*;
@@ -18,12 +20,14 @@ import java.util.regex.Pattern;
 
 import static es.xalpha.gym.logica.util.UtilLogica.*;
 
-public class EditarDatos extends RegistrarCliente {
+public class EditarDatos extends PanelBase implements ControladorDeValidacionYComponentes {
 
     private Cliente cliente;
+    private final VentanaPrincipal ventanaPrincipal;
 
-    public EditarDatos() {
+    public EditarDatos(VentanaPrincipal ventanaPrincipal) {
         initComponents();
+        this.ventanaPrincipal = ventanaPrincipal;
         UtilGUI.setCalendario(calendarioNac);
         UtilGUI.setCalendario(calendarioInicio);
         UtilGUI.setCalendario(calendarioFin);
@@ -33,10 +37,10 @@ public class EditarDatos extends RegistrarCliente {
 
     private void btnListener() {
         btnActualizar.addActionListener(_ -> {
-            setComboBoxMembresia(getPrincipal().getListaMembresia());
-            actualizarDatos();
+            setComboBoxMembresia(ventanaPrincipal.getListaMembresia());
+            actualizarDatosDelCliente();
         });
-        btnLimpiar.addActionListener(_ -> limpiar());
+        btnLimpiar.addActionListener(_ -> limpiarComponentes());
     }
 
     private void txtListener() {
@@ -63,7 +67,7 @@ public class EditarDatos extends RegistrarCliente {
         });
     }
 
-    private void actualizarDatos() {
+    private void actualizarDatosDelCliente() {
         List<JComponent> components = List.of(txtApellido, txtNombre, txtCalle,
                 txtBarrio, txtTelefono, calendarioNac, calendarioFin,
                 calendarioInicio, txtMonto);
@@ -71,18 +75,19 @@ public class EditarDatos extends RegistrarCliente {
         if (datosValidos(components, txtEmail.getText(),
                 txtTelefono.getText())) {
             try {
-                editarCliente();
+                editarDatosDelCliente();
                 UtilGUI.mensaje("Los datos se han actualizado correctamente.",
                         "Actualizado", JOptionPane.INFORMATION_MESSAGE);
-                getPrincipal().verPanel(getPrincipal().getPanelVerClientes(),
-                        getPrincipal().getPaneles());
-                getPrincipal().cargarDatosCliente();
+                ventanaPrincipal.verPanel(
+                        ventanaPrincipal.getPanelVerClientes(),
+                        ventanaPrincipal.getPaneles());
+                ventanaPrincipal.cargarDatosCliente();
             } catch (NonexistentEntityException e) {
                 UtilGUI.mensaje("Ocurrió un error al intentar actualizar los " +
                                 "datos. Inténtelo nuevamente.", "Error",
                         JOptionPane.ERROR_MESSAGE);
             }
-            limpiar();
+            limpiarComponentes();
         } else {
             resaltarComponentesVaciosOIncorrectos(components, txtEmail,
                     txtTelefono);
@@ -94,7 +99,44 @@ public class EditarDatos extends RegistrarCliente {
         }
     }
 
-    private void editarCliente() throws NonexistentEntityException {
+    @Override
+    public boolean datosValidos(List<JComponent> components, String email,
+                                String telefono) {
+        return UtilGUI.sonComponentesVacios(components) &&
+               UtilLogica.esEmailValido(email) &&
+               UtilLogica.esNumeroDeTelValido(telefono);
+    }
+
+    @Override
+    public void restaurarColorComponentes(List<JComponent> components,
+                                          JTextField email,
+                                          JTextField telefono) {
+        SwingUtilities.invokeLater(() -> {
+            components.forEach(component -> cambiarColorComponente(component,
+                    Color.white));
+            email.setBackground(Color.white);
+            telefono.setBackground(Color.white);
+        });
+    }
+
+    @Override
+    public void resaltarComponentesVaciosOIncorrectos(List<JComponent> components, JTextField email, JTextField telefono) {
+        SwingUtilities.invokeLater(() -> {
+            obtenerListaComponentesVacios(components).forEach(
+                    component -> cambiarColorComponente(component, Color.red));
+            resaltarSiEsInvalido(email, UtilLogica::esEmailValido, Color.red);
+            resaltarSiEsInvalido(telefono, UtilLogica::esNumeroDeTelValido,
+                    Color.red);
+        });
+    }
+
+    private List<JComponent> obtenerListaComponentesVacios(List<JComponent> components) {
+        return components.stream().filter(
+                component -> UtilGUI.esCalendarioVacio(component) ||
+                             UtilGUI.esTextoVacio(component)).toList();
+    }
+
+    private void editarDatosDelCliente() throws NonexistentEntityException {
         ControladoraLogica controller =
                 ControladoraLogicaSingleton.INSTANCIA.getController();
         String nombre = txtNombre.getText();
@@ -135,14 +177,37 @@ public class EditarDatos extends RegistrarCliente {
         seleccionarCombo();
     }
 
+    public void setComboBoxMembresia(List<String> lista) {
+        cbxMembresia.removeAllItems();
+        lista.stream().map(String::toLowerCase).forEach(cbxMembresia::addItem);
+    }
+
+    private void limpiarComponentes() {
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtCalle.setText("");
+        txtBarrio.setText("");
+        txtEmail.setText("");
+        txtTelefono.setText("");
+        txtMonto.setText("");
+        calendarioNac.setDate(null);
+        calendarioInicio.setDate(null);
+        calendarioFin.setDate(null);
+        if (cbxMembresia.getSelectedIndex() > 0) {
+            cbxMembresia.setSelectedIndex(0);
+        }
+    }
+
     private void seleccionarCombo() {
-        List<String> lista = getPrincipal().getListaMembresia();
+        List<String> lista = ventanaPrincipal.getListaMembresia().stream().map(
+                String::toLowerCase).toList();
         String tipo = cliente.getMembresia().getTipo().toLowerCase();
         int index = lista.indexOf(tipo);
         setComboBoxMembresia(lista);
         cbxMembresia.setSelectedIndex(index);
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Generated
     // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -192,10 +257,7 @@ public class EditarDatos extends RegistrarCliente {
         lblApellido.setFont(
                 new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblApellido.setForeground(new java.awt.Color(255, 255, 255));
-        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle(
-                "es/xalpha/gym/vista/Bundle"); // NOI18N
-        lblApellido.setText(
-                bundle.getString("EditarDatos.lblApellido.text")); // NOI18N
+        lblApellido.setText("Apellido");
         lblApellido.setName("lblApellido"); // NOI18N
         lblApellido.setPreferredSize(new java.awt.Dimension(54, 20));
 
@@ -209,8 +271,7 @@ public class EditarDatos extends RegistrarCliente {
         lblNombre.setFont(
                 new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombre.setText(
-                bundle.getString("EditarDatos.lblNombre.text")); // NOI18N
+        lblNombre.setText("Nombre");
         lblNombre.setMaximumSize(new java.awt.Dimension(52, 20));
         lblNombre.setName("lblNombre"); // NOI18N
         lblNombre.setPreferredSize(new java.awt.Dimension(52, 20));
@@ -223,16 +284,14 @@ public class EditarDatos extends RegistrarCliente {
 
         lblFecha.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblFecha.setForeground(new java.awt.Color(255, 255, 255));
-        lblFecha.setText(
-                bundle.getString("EditarDatos.lblFecha.text")); // NOI18N
+        lblFecha.setText("Fec. Nac.");
         lblFecha.setName("lblFecha"); // NOI18N
         lblFecha.setPreferredSize(new java.awt.Dimension(60, 20));
 
         lblDatosPersonales.setFont(
                 new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
         lblDatosPersonales.setForeground(new java.awt.Color(255, 255, 255));
-        lblDatosPersonales.setText(bundle.getString(
-                "EditarDatos.lblDatosPersonales.text")); // NOI18N
+        lblDatosPersonales.setText("Datos Personales");
         lblDatosPersonales.setName("lblDatosPersonales"); // NOI18N
         lblDatosPersonales.setPreferredSize(new java.awt.Dimension(190, 30));
 
@@ -245,15 +304,13 @@ public class EditarDatos extends RegistrarCliente {
         lblBarrio.setFont(
                 new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblBarrio.setForeground(new java.awt.Color(255, 255, 255));
-        lblBarrio.setText(
-                bundle.getString("EditarDatos.lblBarrio.text")); // NOI18N
+        lblBarrio.setText("Barrio");
         lblBarrio.setName("lblBarrio"); // NOI18N
         lblBarrio.setPreferredSize(new java.awt.Dimension(40, 20));
 
         lblCalle.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblCalle.setForeground(new java.awt.Color(255, 255, 255));
-        lblCalle.setText(
-                bundle.getString("EditarDatos.lblCalle.text")); // NOI18N
+        lblCalle.setText("Calle");
         lblCalle.setName("lblCalle"); // NOI18N
         lblCalle.setPreferredSize(new java.awt.Dimension(34, 20));
 
@@ -265,8 +322,6 @@ public class EditarDatos extends RegistrarCliente {
         lblDomicilio.setFont(
                 new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
         lblDomicilio.setForeground(new java.awt.Color(255, 255, 255));
-        lblDomicilio.setText(
-                bundle.getString("EditarDatos.lblDomicilio.text")); // NOI18N
         lblDomicilio.setName("lblDomicilio"); // NOI18N
         lblDomicilio.setPreferredSize(new java.awt.Dimension(102, 30));
 
@@ -438,16 +493,14 @@ public class EditarDatos extends RegistrarCliente {
         lblDatosPersonales1.setFont(
                 new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
         lblDatosPersonales1.setForeground(new java.awt.Color(255, 255, 255));
-        lblDatosPersonales1.setText(bundle.getString(
-                "EditarDatos.lblDatosPersonales1.text")); // NOI18N
+        lblDatosPersonales1.setText("Membresia");
         lblDatosPersonales1.setName("lblDatosPersonales1"); // NOI18N
         lblDatosPersonales1.setPreferredSize(new java.awt.Dimension(122, 30));
 
         lblMembresia.setFont(
                 new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblMembresia.setForeground(new java.awt.Color(255, 255, 255));
-        lblMembresia.setText(
-                bundle.getString("EditarDatos.lblMembresia.text")); // NOI18N
+        lblMembresia.setText("Tipo");
         lblMembresia.setName("lblMembresia"); // NOI18N
         lblMembresia.setPreferredSize(new java.awt.Dimension(30, 20));
 
@@ -461,8 +514,7 @@ public class EditarDatos extends RegistrarCliente {
 
         lblMonto.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblMonto.setForeground(new java.awt.Color(255, 255, 255));
-        lblMonto.setText(
-                bundle.getString("EditarDatos.lblMonto.text")); // NOI18N
+        lblMonto.setText("Monto");
         lblMonto.setName("lblMonto"); // NOI18N
         lblMonto.setPreferredSize(new java.awt.Dimension(42, 20));
 
@@ -474,8 +526,7 @@ public class EditarDatos extends RegistrarCliente {
         lblMembresia1.setFont(
                 new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblMembresia1.setForeground(new java.awt.Color(255, 255, 255));
-        lblMembresia1.setText(
-                bundle.getString("EditarDatos.lblMembresia1.text")); // NOI18N
+        lblMembresia1.setText("Inicia el");
         lblMembresia1.setName("lblMembresia1"); // NOI18N
         lblMembresia1.setPreferredSize(new java.awt.Dimension(50, 20));
 
@@ -489,8 +540,7 @@ public class EditarDatos extends RegistrarCliente {
         lblMembresia2.setFont(
                 new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblMembresia2.setForeground(new java.awt.Color(255, 255, 255));
-        lblMembresia2.setText(
-                bundle.getString("EditarDatos.lblMembresia2.text")); // NOI18N
+        lblMembresia2.setText("Finaliza el");
         lblMembresia2.setName("lblMembresia2"); // NOI18N
         lblMembresia2.setPreferredSize(new java.awt.Dimension(66, 20));
 
@@ -504,15 +554,13 @@ public class EditarDatos extends RegistrarCliente {
         lblContacto.setFont(
                 new java.awt.Font("Roboto", Font.BOLD, 24)); // NOI18N
         lblContacto.setForeground(new java.awt.Color(255, 255, 255));
-        lblContacto.setText(
-                bundle.getString("EditarDatos.lblContacto.text")); // NOI18N
+        lblContacto.setText("Contacto");
         lblContacto.setName("lblContacto"); // NOI18N
         lblContacto.setPreferredSize(new java.awt.Dimension(100, 30));
 
         lblEmail.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(255, 255, 255));
-        lblEmail.setText(
-                bundle.getString("EditarDatos.lblEmail.text")); // NOI18N
+        lblEmail.setText("Email");
         lblEmail.setName("lblEmail"); // NOI18N
         lblEmail.setPreferredSize(new java.awt.Dimension(36, 20));
 
@@ -525,8 +573,7 @@ public class EditarDatos extends RegistrarCliente {
         lblTelefono.setFont(
                 new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
-        lblTelefono.setText(
-                bundle.getString("EditarDatos.lblTelefono.text")); // NOI18N
+        lblTelefono.setText("Telefono");
         lblTelefono.setName("lblTelefono"); // NOI18N
         lblTelefono.setPreferredSize(new java.awt.Dimension(58, 20));
 
@@ -714,8 +761,6 @@ public class EditarDatos extends RegistrarCliente {
         btnActualizar.setIcon(new javax.swing.ImageIcon(
                 "D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson " +
                 "Gimnasio\\src\\icon\\actualizar.png")); // NOI18N
-        btnActualizar.setText(
-                bundle.getString("EditarDatos.btnLimpiar.text")); // NOI18N
         btnActualizar.setToolTipText("Actualizar datos");
         btnActualizar.setColor(new Color(0, 0, 0, 0));
         btnActualizar.setColorClick(new java.awt.Color(68, 75, 217));
@@ -734,8 +779,6 @@ public class EditarDatos extends RegistrarCliente {
         btnLimpiar.setIcon(new javax.swing.ImageIcon(
                 "D:\\Ale\\Mis Cursos\\Curso Java\\Netbeans\\Proyecto Wilson " +
                 "Gimnasio\\src\\icon\\limpiar.png")); // NOI18N
-        btnLimpiar.setText(
-                bundle.getString("EditarDatos.btnLimpiar.text")); // NOI18N
         btnLimpiar.setToolTipText("Limpiar");
         btnLimpiar.setColor(new Color(0, 0, 0, 0));
         btnLimpiar.setColorClick(new java.awt.Color(177, 34, 219));

@@ -3,9 +3,7 @@ package es.xalpha.gym.vista;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import es.xalpha.gym.logica.entidad.Contacto;
 import es.xalpha.gym.logica.entidad.Domicilio;
-import es.xalpha.gym.logica.util.Configuracion;
-import es.xalpha.gym.logica.util.UtilGUI;
-import es.xalpha.gym.logica.util.UtilLogica;
+import es.xalpha.gym.logica.util.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,16 +14,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VerConfiguracion extends PanelBase {
+public class GestorDeConfiguracionDeGym extends PanelBase implements ControladorDeValidacionYComponentes {
 
     private static Configuracion configuracion = new Configuracion();
     private final List<String> listaMembresia = new ArrayList<>(
             List.of("Sin membresia"));
-    private final VentanaPrincipal principal;
 
-    public VerConfiguracion(VentanaPrincipal principal) {
+    public GestorDeConfiguracionDeGym() {
         initComponents();
-        this.principal = principal;
         setComboBoxMembresia();
         lblImagen.setSize(250, 250);
         setLabel(lblImagen, "src/image/wilson.png");
@@ -44,16 +40,16 @@ public class VerConfiguracion extends PanelBase {
 
     private void btnListener() {
         btnMas.addActionListener(_ -> agregarMembresia());
-        btnGuardar.addActionListener(_ -> guardarArchivoJSON());
+        btnGuardar.addActionListener(_ -> guardarConfiguracionComoJSON());
         btnMenos.addActionListener(_ -> eliminarMembresia());
         btnReubicar.addActionListener(_ -> cambiarUbicacionDelArchivo());
     }
 
-    private void guardarArchivoJSON() {
+    private void guardarConfiguracionComoJSON() {
         List<JComponent> components = List.of(txtNombre, txtCalle);
         if (datosValidos(components, txtEmail.getText(),
                 txtTelefono.getText())) {
-            guardarConfiguracionJSON();
+            guardarConfiguracionEnArchivo();
         } else {
             UtilGUI.mensaje(
                     "Algunos campos no están completos. Por favor, revise " +
@@ -95,7 +91,7 @@ public class VerConfiguracion extends PanelBase {
         });
     }
 
-    private void guardarConfiguracionJSON() {
+    private void guardarConfiguracionEnArchivo() {
         String email = txtEmail.getText();
         String telefono = txtTelefono.getText();
         String nombre = txtNombre.getText();
@@ -112,65 +108,40 @@ public class VerConfiguracion extends PanelBase {
         configuracion.setDomicilio(domicilio);
         configuracion.setMembresias(listaMembresia);
 
-        guardarArchivoJSON(configuracion);
-        cargarArchivoJSON(principal.getArchivo().getFile());
-    }
-
-    private void guardarArchivoJSON(Configuracion configuracion) {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            mapper.writeValue(principal.getArchivo().getFile(), configuracion);
-            UtilGUI.mensaje("Los datos se han guardado correctamente.",
-                    "Actualizacion exitosa", JOptionPane.INFORMATION_MESSAGE);
-        } catch (IOException e) {
-            UtilGUI.mensaje(
-                    "Error al guardar la configuración: " + e.getMessage(),
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        ManipularArchivo.guardarArchivo(configuracion);
+        cargarArchivoJSON(ManipularArchivo.getFile());
     }
 
     public void cargarArchivoJSON(File file) {
-        ObjectMapper mapper = new ObjectMapper();
         try {
-            if (file != null && file.length() > 0) {
-                configuracion = mapper.readValue(file, Configuracion.class);
-                txtNombre.setText(configuracion.getNombre());
-                txtCalle.setText(configuracion.getDomicilio().getCalle());
-                txtEmail.setText(configuracion.getContacto().getEmail());
-                txtTelefono.setText(configuracion.getContacto().getTelefono());
-                listaMembresia.clear();
-                listaMembresia.addAll(configuracion.getMembresias());
-                setComboBoxMembresia();
-            }
+            cargarConfiguracionDesdeArchivo(file);
         } catch (IOException e) {
             UtilGUI.mensaje("No se encontró el archivo de configuración: " +
                             e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void cambiarUbicacionDelArchivo() {
-        try {
-            verificarUbicacion();
-            cargarArchivoJSON(principal.getArchivo().getFile());
-        } catch (IOException e) {
-            UtilGUI.mensaje("No se pudo cambiar la ubicación del archivo.",
-                    "Error al actualizar", JOptionPane.ERROR_MESSAGE);
+    private void cargarConfiguracionDesdeArchivo(File file) throws IOException {
+        if (file != null && file.length() > 0) {
+            ObjectMapper mapper = new ObjectMapper();
+            configuracion = mapper.readValue(file, Configuracion.class);
+            txtNombre.setText(configuracion.getNombre());
+            txtCalle.setText(configuracion.getDomicilio().getCalle());
+            txtEmail.setText(configuracion.getContacto().getEmail());
+            txtTelefono.setText(configuracion.getContacto().getTelefono());
+            listaMembresia.clear();
+            listaMembresia.addAll(configuracion.getMembresias());
+            setComboBoxMembresia();
         }
     }
 
-    private void verificarUbicacion() throws IOException {
-        String anterior = principal.getArchivo().getPath();
-        principal.getArchivo().actualizarArchivo(anterior, "Json (*.json)",
-                ".json");
-        String nuevo = principal.getArchivo().getPath();
-        String[] pathAnterior = anterior.split("\\\\");
-        String[] pathNuevo = nuevo.split("\\\\");
-        if (pathAnterior.length != pathNuevo.length) {
-            UtilGUI.mensaje("El archivo ha sido movido con éxito.",
-                    "Ubicación actualizada", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            UtilGUI.mensaje("La ubicación del archivo no ha cambiado.",
-                    "Sin cambios", JOptionPane.INFORMATION_MESSAGE);
+    private void cambiarUbicacionDelArchivo() {
+        try {
+            ManipularArchivo.verificarUbicacionDelArchivo();
+            cargarArchivoJSON(ManipularArchivo.getFile());
+        } catch (IOException e) {
+            UtilGUI.mensaje("No se pudo cambiar la ubicación del archivo.",
+                    "Error al actualizar", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -288,7 +259,8 @@ public class VerConfiguracion extends PanelBase {
         btnGuardar.setColor(new Color(0, 0, 0, 0));
         btnGuardar.setColorClick(new java.awt.Color(10, 193, 18));
         btnGuardar.setColorOver(new java.awt.Color(15, 225, 24));
-        btnGuardar.setFont(new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
+        btnGuardar.setFont(
+                new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setIconTextGap(2);
         btnGuardar.setMargin(new java.awt.Insets(2, 14, 2, 14));
@@ -305,7 +277,8 @@ public class VerConfiguracion extends PanelBase {
         btnReubicar.setColor(new Color(0, 0, 0, 0));
         btnReubicar.setColorClick(new java.awt.Color(139, 49, 210));
         btnReubicar.setColorOver(new java.awt.Color(160, 58, 240));
-        btnReubicar.setFont(new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
+        btnReubicar.setFont(
+                new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
         btnReubicar.setHorizontalTextPosition(
                 javax.swing.SwingConstants.CENTER);
         btnReubicar.setIconTextGap(2);
@@ -316,11 +289,13 @@ public class VerConfiguracion extends PanelBase {
 
         panelFormulario.setOpaque(false);
 
-        lblNombre.setFont(new java.awt.Font("Roboto", Font.PLAIN, 18)); // NOI18N
+        lblNombre.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 18)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setText("Nombre del local");
 
-        txtNombre.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        txtNombre.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtNombre.setForeground(new java.awt.Color(0, 0, 0));
         txtNombre.setMinimumSize(new java.awt.Dimension(70, 30));
         txtNombre.setPreferredSize(new java.awt.Dimension(70, 30));
@@ -343,16 +318,19 @@ public class VerConfiguracion extends PanelBase {
         txtEmail.setMinimumSize(new java.awt.Dimension(70, 30));
         txtEmail.setPreferredSize(new java.awt.Dimension(70, 30));
 
-        lblTelefono.setFont(new java.awt.Font("Roboto", Font.PLAIN, 18)); // NOI18N
+        lblTelefono.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 18)); // NOI18N
         lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
         lblTelefono.setText("Telefono");
 
-        txtTelefono.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        txtTelefono.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         txtTelefono.setForeground(new java.awt.Color(0, 0, 0));
         txtTelefono.setMinimumSize(new java.awt.Dimension(70, 30));
         txtTelefono.setPreferredSize(new java.awt.Dimension(70, 30));
 
-        cbxMembresia.setFont(new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
+        cbxMembresia.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 14)); // NOI18N
         cbxMembresia.setMinimumSize(new java.awt.Dimension(80, 30));
         cbxMembresia.setPreferredSize(new java.awt.Dimension(80, 30));
 
@@ -375,10 +353,12 @@ public class VerConfiguracion extends PanelBase {
         btnMenos.setColor(new Color(0, 0, 0, 0));
         btnMenos.setColorClick(new java.awt.Color(220, 51, 51));
         btnMenos.setColorOver(new java.awt.Color(240, 56, 56));
-        btnMenos.setFont(new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
+        btnMenos.setFont(
+                new java.awt.Font("Roboto", Font.ITALIC, 12)); // NOI18N
         btnMenos.setPreferredSize(new java.awt.Dimension(40, 40));
 
-        lblMembresia.setFont(new java.awt.Font("Roboto", Font.PLAIN, 18)); // NOI18N
+        lblMembresia.setFont(
+                new java.awt.Font("Roboto", Font.PLAIN, 18)); // NOI18N
         lblMembresia.setForeground(new java.awt.Color(255, 255, 255));
         lblMembresia.setText("Membresia");
 
