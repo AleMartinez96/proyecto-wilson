@@ -4,11 +4,11 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd">
     <persistence-unit name="gymPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>es.xalpha.gym.logica.entidad.Membresia</class>
         <class>es.xalpha.gym.logica.entidad.Cliente</class>
         <class>es.xalpha.gym.logica.entidad.Contacto</class>
         <class>es.xalpha.gym.logica.entidad.Domicilio</class>
         <class>es.xalpha.gym.logica.entidad.Factura</class>
+        <class>es.xalpha.gym.logica.entidad.Membresia</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url"
                       value="jdbc:mysql://localhost:3306/gym_wilson?serverTimezone=UTC"/>

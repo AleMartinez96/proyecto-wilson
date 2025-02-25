@@ -10,7 +10,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>23</maven.compiler.release>
-        <exec.mainClass>es.xalpha.gym.test.Test</exec.mainClass>
+        <exec.mainClass>es.xalpha.gym.main.Main</exec.mainClass>
     </properties>
     <dependencies>
         <dependency>

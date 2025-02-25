@@ -88,8 +88,8 @@ public class Contacto implements Serializable {
 
     @Override
     public String toString() {
-        return "Contacto{" + "idContacto=" + idContacto + ", email='" + email +
-               '\'' + ", telefono='" + telefono + '\'' + ", cliente=" +
-               cliente + '}';
+        return ("Contacto{idContacto=%d, email='%s', telefono='%s', " +
+                "cliente=%s}").formatted(
+                idContacto, email, telefono, cliente);
     }
 }

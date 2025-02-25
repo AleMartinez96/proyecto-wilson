@@ -1,6 +1,7 @@
 package es.xalpha.gym.logica.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import es.xalpha.gym.logica.util.gui.UtilGUI;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
